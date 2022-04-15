@@ -15,6 +15,10 @@ export class AuthService {
     this.loggedIn = true;
   }
 
+  register(nom:string, password:string, photo:string, profil:Number) {
+    return this.http.post('http://localhost:8010/api/auth/register', {nom, password, photo, profil});
+  }
+
   logOut() {
     this.loggedIn = false;
   }

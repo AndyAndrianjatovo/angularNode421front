@@ -30,6 +30,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './assignments/login/login.component';
+import { RegisterComponent } from './assignments/register/register.component';
 
 const routes:Routes = [
   {
@@ -56,6 +57,10 @@ const routes:Routes = [
   {
     path:"login",
     component: LoginComponent
+  },
+  {
+    path:"register",
+    component: RegisterComponent
   }
 ]
 @NgModule({
@@ -67,7 +72,8 @@ const routes:Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule, FormsModule,
