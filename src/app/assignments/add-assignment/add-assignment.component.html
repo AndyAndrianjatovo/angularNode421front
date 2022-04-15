@@ -10,6 +10,21 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
+  <!-- <mat-form-field>
+    <input matInput placeholder="idMatiere" [(ngModel)]="idMatiere" name="matiere" required>
+  </mat-form-field> -->
+  <mat-form-field>
+    <mat-select [(ngModel)]="idMatiere"  name="matiere">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor='let option of matieres' [value]='option.id' >{{option.nom}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="idEleve" [(ngModel)]="idEleve" name="eleve" required>
+  </mat-form-field>
+
     <button mat-stroked-button color="primary" [disabled]="((!this.nomAssignment) || (!this.dateDeRendu))">
       Ajouter un devoir
     </button>

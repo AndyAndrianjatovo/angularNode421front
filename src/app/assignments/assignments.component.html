@@ -59,14 +59,19 @@
       <a href="/assignment/{{assignment.id}}">
         <h3 mat-subheader>{{assignment.dateDeRendu | date:"dd/MM/yy"}}</h3>
         <mat-list-item>
-          <p *ngIf="assignment.rendu; else nonsoumis" appRendu>
-            Devoir intitulé {{assignment.nom}}.
-          </p>
+          <div *ngIf="assignment.rendu; else nonsoumis" appRendu>
+            <p>
+              Devoir intitulé {{assignment.nom}}.
+            </p>
+            <p> Note : {{ assignment.note }}/20</p>
+          </div>
+          
           <ng-template #nonsoumis>
             <p appNonRendu>Le devoir {{assignment.nom}} n'a pas encore été rendu.</p>
           </ng-template>
           <mat-divider></mat-divider>
         </mat-list-item>
+        
       </a>
     </nav>
   </mat-list>
