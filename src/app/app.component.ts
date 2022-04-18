@@ -22,7 +22,7 @@ export class AppComponent {
       console.log('je me deloggue');
       this.authService.logOut();
       // et je navigue vers la page d'accueil
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     } else {
       console.log('je me loggue');
       this.authService.logIn('michel', 'monpassword');
@@ -35,7 +35,8 @@ export class AppComponent {
 
   genererDonneesDeTest() {
     //this.assignmentsService.peuplerBD();
-    this.assignmentsService.peuplerBDAvecForkJoin().subscribe(() => {
+    var token = sessionStorage.getItem("token");
+    this.assignmentsService.peuplerBDAvecForkJoin(token).subscribe(() => {
       console.log(
         'TOUS LES AJOUTS ONT ETE FAITS, ON PEUT RE-AFFICHER LA LISTE'
       );

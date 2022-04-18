@@ -21,13 +21,13 @@ export class AssignmentsService {
   url = "http://localhost:8010/api/assignments";
   //url= "https://mbdsmadagascar2022api.herokuapp.com/api/assignments";
 
-  getAssignments(page:number, limit:number):Observable<any> {
+  getAssignments(page:number, limit:number, token:any):Observable<any> {
     // en réalité, bientôt au lieu de renvoyer un tableau codé en dur,
     // on va envoyer une requête à un Web Service sur le cloud, qui mettra un
     // certain temps à répondre. On va donc préparer le terrain en renvoyant
     // non pas directement les données, mais en renvoyant un objet "Observable"
     //return of(this.assignments);
-    return this.http.get<Assignment[]>(this.url + "?page=" + page + "&limit=" + limit);
+    return this.http.get<Assignment[]>(this.url + "?page=" + page + "&limit=" + limit,{headers: {'x-access-token': token}});
   }
 
   getAssignment(id:number):Observable<Assignment|undefined> {
@@ -55,12 +55,12 @@ export class AssignmentsService {
     }
   }
 
-  addAssignment(assignment:Assignment):Observable<any> {
+  addAssignment(assignment:Assignment, token: any):Observable<any> {
    // this.assignments.push(assignment);
 
     this.loggingService.log(assignment.nom, "ajouté");
 
-    return this.http.post<Assignment>(this.url, assignment);
+    return this.http.post<Assignment>(this.url, assignment, {headers: {'x-access-token': token}});
 
     //return of("Assignment ajouté");
   }
@@ -81,7 +81,7 @@ export class AssignmentsService {
     return this.http.delete(this.url + "/" + assignment._id);
   }
 
-  peuplerBD() {
+  peuplerBD(token: any) {
     bdInitialAssignments.forEach(a => {
       let newAssignment = new Assignment();
       newAssignment.nom = a.nom;
@@ -89,14 +89,14 @@ export class AssignmentsService {
       newAssignment.rendu = a.rendu;
       newAssignment.id = a.id;
 
-      this.addAssignment(newAssignment)
+      this.addAssignment(newAssignment, token)
       .subscribe(reponse => {
         console.log(reponse.message);
       })
     })
   }
 
-  peuplerBDAvecForkJoin(): Observable<any> {
+  peuplerBDAvecForkJoin(token:any): Observable<any> {
     const appelsVersAddAssignment:any = [];
 
     bdInitialAssignments.forEach((a) => {
@@ -107,7 +107,7 @@ export class AssignmentsService {
       nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
       nouvelAssignment.rendu = a.rendu;
 
-      appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
+      appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment,token));
     });
     return forkJoin(appelsVersAddAssignment); // renvoie un seul Observable pour dire que c'est fini
   }

@@ -19,13 +19,17 @@ export class AuthService {
     return this.http.post('http://localhost:8010/api/auth/register', {nom, password, photo, profil});
   }
 
+  getLoggedIn(token:string) {
+    return this.http.get('http://localhost:8010/api/auth/me', {headers: {'x-access-token': token}});
+  }
+
   logOut() {
-    this.loggedIn = false;
+    sessionStorage.removeItem("token");
   }
 
   isAdmin() {
     let isUserAdmin = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
+      resolve(sessionStorage.getItem("token"));
     });
     //return this.loggedIn;
     return isUserAdmin;

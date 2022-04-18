@@ -36,19 +36,22 @@ import { RegisterComponent } from './assignments/register/register.component';
 const routes:Routes = [
   {
     path:"",
-    component: AssignmentsComponent
+    component: LoginComponent
   },
   {
     path:"home",
-    component: AssignmentsComponent
+    component: AssignmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"add",
-    component: AddAssignmentComponent
+    component: AddAssignmentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"assignment/:id",
-    component: AssignmentDetailComponent
+    component: AssignmentDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"assignment/:id/edit",

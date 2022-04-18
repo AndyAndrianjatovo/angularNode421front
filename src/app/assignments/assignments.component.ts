@@ -24,6 +24,8 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   prevPage= 1;
   nextPage= 2;
 
+  token: any;
+
   constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone) {}
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
@@ -69,12 +71,13 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   // appelé après le constructeur et AVANT l'affichage du composant
   ngOnInit(): void {
     console.log("Dans ngOnInit, appelé avant l'affichage");
-    this.getAssignments();
+    this.token = sessionStorage.getItem('token');
+    this.getAssignments(this.token);
   }
 
-  getAssignments() {
+  getAssignments(token: any) {
       // demander les données au service de gestion des assignments...
-      this.assignmentsService.getAssignments(this.page, this.limit)
+      this.assignmentsService.getAssignments(this.page, this.limit,token)
       .subscribe(reponse => {
         console.log("données arrivées");
         this.assignments = reponse.docs;
@@ -93,7 +96,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   getAssignmentsScrollInfini() {
     // demander les données au service de gestion des assignments...
-    this.assignmentsService.getAssignments(this.page, this.limit)
+    this.assignmentsService.getAssignments(this.page, this.limit,this.token)
     .subscribe(reponse => {
       console.log("données arrivées");
       //this.assignments = reponse.docs;
@@ -115,21 +118,21 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   pagePrecedente() {
     this.page--;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 
   pageSuivante() {
     this.page++;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 
   premierePage() {
     this.page = 1;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 
   dernierePage() {
     this.page = this.totalPages;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 }

@@ -19,11 +19,13 @@ export class AddAssignmentComponent implements OnInit {
   idMatiere!: number;
   idEleve!: number;
   matieres: Matiere[] = [];
+  token: any;
   
 
   constructor(private assignmentsService:AssignmentsService, private router:Router,private matiereService :MatiereService ) {}
 
   ngOnInit(): void {
+    this.token = localStorage.getItem("token");
     this.matiereService.getMatieres(1,20)
       .subscribe(reponse => {
         this.matieres = reponse.docs;
@@ -47,7 +49,7 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.idMatiere = this.idMatiere ;
     newAssignment.idEleve = this.idEleve;
 
-    this.assignmentsService.addAssignment(newAssignment)
+    this.assignmentsService.addAssignment(newAssignment, this.token)
     .subscribe(reponse => {
       console.log(reponse.message);
 

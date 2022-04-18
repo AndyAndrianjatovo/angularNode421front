@@ -1,12 +1,109 @@
-<form ngForm (submit)="onSubmit();" class="form">
-    <input type="text" placeholder="Nom" [(ngModel)]="nom" name="nom" >
-    <input type="password" placeholder="password" [(ngModel)]="password" name="password" >
-    <input type="text" placeholder="photo" [(ngModel)]="photo" name="photo" >
-    <input type="number" placeholder="profil" [(ngModel)]="profil" name="profil" >
-  
-  
-    <button mat-stroked-button color="primary">
-    Ajouter un devoir
-    </button>
-  </form>
-  
+<!-- <form ngForm (submit)="onSubmit()" class="form">
+  <input type="text" placeholder="Nom" [(ngModel)]="nom" name="nom" />
+  <input
+    type="password"
+    placeholder="password"
+    [(ngModel)]="password"
+    name="password"
+  />
+  <input type="text" placeholder="photo" [(ngModel)]="photo" name="photo" />
+  <input
+    type="number"
+    placeholder="profil"
+    [(ngModel)]="profil"
+    name="profil"
+  />
+
+  <button mat-stroked-button color="primary">Ajouter un devoir</button>
+</form> -->
+
+<div class="loginContainer1">
+  <div class="pic">
+    <div class="glass">
+      <div class="text">
+        <p class="haut">We are</p>
+        <p class="milieu">Invite only right now.</p>
+      </div>
+    </div>
+  </div>
+  <div class="side">
+    <form class="formulaire" ngForm (submit)="onSubmit()">
+      <h1>Inscription</h1>
+      <div class="input">
+        <label for="nom">Nom</label>
+        <input
+          type="text"
+          name="nom"
+          id="nom"
+          class="inp-control"
+          placeholder="Pseudo de connexion"
+          [(ngModel)]="nom"
+          required
+        />
+      </div>
+      <div class="input">
+        <label for="password">Mot de passe de connexion</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="inp-control"
+          placeholder="Mot de passe"
+          [(ngModel)]="password"
+          required
+        />
+      </div>
+      <!-- <div class="input">
+        <label for="password">Confirmer le mot de passe</label>
+        <input
+          type="password"
+          name="password1"
+          id="password1"
+          class="inp-control"
+          placeholder="Confirmation du mot de passe"
+          [(ngModel)]="password1"
+          required
+        />
+      </div> -->
+      <div class="input">
+        <label for="photo">Photo</label>
+        <input
+          type="file"
+          name="photo"
+          id="photo"
+          class="inp-control"
+          placeholder="Enter your e-mail"
+          [(ngModel)]="photo"
+        />
+      </div>
+      <div class="input">
+        <label for="profil">Profil</label>
+        <input
+          type="text"
+          name="profil"
+          id="profil"
+          class="inp-control"
+          placeholder="Enter your e-mail"
+          [(ngModel)]="profil"
+        />
+      </div>
+
+      <div class="button">
+        <button type="submit" >
+          S'inscrire
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            style="fill: rgb(255, 255, 255)"
+          >
+            <path
+              d="M11.293 17.293L12.707 18.707 19.414 12 12.707 5.293 11.293 6.707 15.586 11 6 11 6 13 15.586 13z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </form> 
+  </div>
+</div>
