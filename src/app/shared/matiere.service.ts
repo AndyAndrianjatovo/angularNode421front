@@ -16,9 +16,13 @@ export class MatiereService {
     this.loggingService.setNiveauTrace(2);
   }
 
-  getMatieres(page:number, limit:number):Observable<any> {
-    return this.http.get<Matiere[]>(this.url + "?page=" + page + "&limit=" + limit);
+  getMatieres():Observable<any> {
+    return this.http.get<Matiere[]>(this.url);
   }
+
+  // getMatieres(page:number, limit:number):Observable<any> {
+  //   return this.http.get<Matiere[]>(this.url + "?page=" + page + "&limit=" + limit);
+  // }
 
   getMatiere(id:number):Observable<Matiere|undefined> {
     return this.http.get<Matiere>(`${this.url}/${id}`)

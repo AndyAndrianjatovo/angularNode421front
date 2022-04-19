@@ -4,6 +4,8 @@ import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatiereService } from 'src/app/shared/matiere.service';
 import { Assignment } from '../assignment.model';
 import { Matiere } from '../../matiere/matiere.model';
+import { Users } from '../users.model';
+import { UsersService } from 'src/app/shared/users.service';
 
 @Component({
   selector: 'app-add-assignment',
@@ -19,15 +21,22 @@ export class AddAssignmentComponent implements OnInit {
   idMatiere!: number;
   idEleve!: number;
   matieres: Matiere[] = [];
+  eleves : Users[] = [];
   
 
-  constructor(private assignmentsService:AssignmentsService, private router:Router,private matiereService :MatiereService ) {}
+  constructor(private assignmentsService:AssignmentsService, private router:Router,private matiereService :MatiereService, private usersService :UsersService ) {}
 
   ngOnInit(): void {
-    this.matiereService.getMatieres(1,20)
+    this.matiereService.getMatieres()
       .subscribe(reponse => {
         this.matieres = reponse.docs;
         console.log(reponse.docs);
+      });
+
+      this.usersService.getUserByProfil(10)
+      .subscribe(reponse => {
+        this.eleves = reponse;
+        console.log(reponse);
       });
   }
 

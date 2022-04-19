@@ -22,7 +22,11 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="idEleve" [(ngModel)]="idEleve" name="eleve" required>
+    <mat-select [(ngModel)]="idEleve" name="eleve">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor='let option of eleves' [value]='option.id' >{{option.nom}}</mat-option>
+
+    </mat-select>
   </mat-form-field>
 
     <button mat-stroked-button color="primary" [disabled]="((!this.nomAssignment) || (!this.dateDeRendu))">

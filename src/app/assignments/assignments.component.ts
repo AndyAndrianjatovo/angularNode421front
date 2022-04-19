@@ -1,9 +1,13 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
+import { Matiere } from '../matiere/matiere.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { MatiereService } from '../shared/matiere.service';
+import { UsersService } from '../shared/users.service';
 import { Assignment } from './assignment.model';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-assignments',
@@ -14,6 +18,9 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   assignments:Assignment[] = [];
   displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu','note','remarques','idMatiere','idEleve'];
 
+  matiere:Matiere[] = [];
+  rendu:Assignment[] = [];
+  nonRendu:Assignment[] = [];
   // pagination
   page=1;
   limit=10;
@@ -24,7 +31,9 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   prevPage= 1;
   nextPage= 2;
 
-  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone) {}
+  token: any;
+
+  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone , private matiereService:MatiereService) {}
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -69,12 +78,15 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   // appelé après le constructeur et AVANT l'affichage du composant
   ngOnInit(): void {
     console.log("Dans ngOnInit, appelé avant l'affichage");
-    this.getAssignments();
+    this.token = sessionStorage.getItem('token');
+    this.getAssignments(this.token);
+    this.getMatiere();
   }
 
-  getAssignments() {
+  
+  getAssignments(token: any) {
       // demander les données au service de gestion des assignments...
-      this.assignmentsService.getAssignments(this.page, this.limit)
+      this.assignmentsService.getAssignments(this.page, this.limit,token)
       .subscribe(reponse => {
         console.log("données arrivées");
         this.assignments = reponse.docs;
@@ -86,14 +98,41 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
         this.hasNextPage=reponse.hasNextPage;
         this.prevPage= reponse.prevPage;
         this.nextPage= reponse.nextPage;
+        this.rendu = this.assignments.filter(x=>x.rendu == true);
+        this.nonRendu = this.assignments.filter(x=>x.rendu == false);
       });
 
       console.log("Après l'appel au service");
   }
 
+getMatiere() {
+  this.matiereService.getMatieres()
+  .subscribe(reponse => {
+    this.matiere = reponse.docs;
+  });
+}
+
+getMatierebyId(id: Number){
+    var mat = this.matiere.find(e => e.id == id );
+    return mat
+}
+
+drop(event: CdkDragDrop<Assignment[]>) {
+  if (event.previousContainer === event.container) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  } else {
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex,
+    );
+  }
+}
+
   getAssignmentsScrollInfini() {
     // demander les données au service de gestion des assignments...
-    this.assignmentsService.getAssignments(this.page, this.limit)
+    this.assignmentsService.getAssignments(this.page, this.limit,this.token)
     .subscribe(reponse => {
       console.log("données arrivées");
       //this.assignments = reponse.docs;
@@ -115,21 +154,22 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   pagePrecedente() {
     this.page--;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 
   pageSuivante() {
     this.page++;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 
   premierePage() {
     this.page = 1;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
 
   dernierePage() {
     this.page = this.totalPages;
-    this.getAssignments();
+    this.getAssignments(this.token);
   }
+
 }
