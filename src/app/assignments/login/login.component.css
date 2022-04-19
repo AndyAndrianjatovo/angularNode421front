@@ -33,7 +33,8 @@
   }
   
   .formulaire {
-    margin: 30% 12em;
+    /* margin: 30% 12em; */
+    margin: 1em 30%;
   }
   
   .formulaire h1 {

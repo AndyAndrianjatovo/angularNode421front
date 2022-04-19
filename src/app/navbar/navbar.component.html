@@ -1,0 +1,22 @@
+<div class="navbarContainer">
+  <div class="leftPart">
+    <small><b><a href="/home"> Assignments App </a></b></small>
+    <ul>
+      <li><small><b><a href="/add">Ajout de devoir</a></b></small></li>
+      <li><small><b><a href="/login" (click)="deco()">Deconnexion</a></b></small></li>
+    </ul>
+  </div>
+  <div class="rightPart">
+    <!-- <input type="text" id="searchbar" /> -->
+    <div id="avatar">
+      <img
+        src="../../assets/study_music_by_jknewlife_des8drg.png"
+        alt="avatar"
+      />
+    </div>
+    <div class="nameAndProfil">
+      <div class="nom">{{ users.nom }}</div>
+      <div class="profile">{{ transformProfil(users.profil) }}</div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,14 @@
 <div class="loginContainer1">
-  <div class="pic">
-    <div class="glass">
+  <!-- <div class="pic"> -->
+  <!-- <div class="glass">
       <div class="text">
         <p class="haut">We are</p>
         <p class="milieu">Invite only right now.</p>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
   <div class="side">
-    <form class="formulaire" ngForm (submit)="onSubmit()">
+    <!-- <form class="formulaire" ngForm (submit)="onSubmit()">
       <h1>Inscription</h1>
       <div class="input">
         <label for="nom">Nom</label>
@@ -34,18 +34,7 @@
           required
         />
       </div>
-      <!-- <div class="input">
-        <label for="password">Confirmer le mot de passe</label>
-        <input
-          type="password"
-          name="password1"
-          id="password1"
-          class="inp-control"
-          placeholder="Confirmation du mot de passe"
-          [(ngModel)]="password1"
-          required
-        />
-      </div> -->
+    
       <div class="input">
         <label for="photo">Photo</label>
         <input
@@ -70,7 +59,7 @@
       </div>
 
       <div class="button">
-        <button type="submit" >
+        <button type="submit">
           S'inscrire
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -85,6 +74,55 @@
           </svg>
         </button>
       </div>
-    </form> 
+
+      <small>Déjà un compte ? Connecter vous <a href="/login">ici</a></small>
+    </form> -->
+    <div class="formulaire">
+      <h1>Inscription</h1>
+      <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                placeholder="Last name, First name"
+                formControlName="firstCtrl"
+                required
+              />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+          <form [formGroup]="secondFormGroup">
+            <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                formControlName="secondCtrl"
+                placeholder="Ex. 1 Main St, New York, NY"
+                required
+              />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
   </div>
 </div>

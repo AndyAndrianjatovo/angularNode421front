@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentsService } from './shared/assignments.service';
 import { AuthService } from './shared/auth.service';
@@ -8,14 +8,21 @@ import { AuthService } from './shared/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   titre = 'Application de gestion des assignments...';
+  isConnecter: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private assignmentsService: AssignmentsService
   ) {}
+
+  ngOnInit() {
+    if(sessionStorage.getItem('token') != null){
+      this.isConnecter = true;
+    }
+  }
 
   onLoginLogout() {
     if (this.authService.loggedIn) {

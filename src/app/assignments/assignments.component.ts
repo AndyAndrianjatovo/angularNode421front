@@ -38,41 +38,41 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
   ngAfterViewInit():void{
-    this.scroller.elementScrolled().pipe(
-      tap(event => {
-        //console.log(event);
-      }),
-      map(event => {
-        return this.scroller.measureScrollOffset('bottom');
-      }),
-      tap(val => {
-        //console.log("distance par rapport à la fin = " + val)
-      }),
-      pairwise(),
-      tap(val => {
-        /*
-        if(val[0] < val[1]) console.log("on monte")
-        else console.log("on descend")
-        */
-      }),
-      filter(([y1, y2]) => (y2 < y1 && y2 < 140)),
-      tap(val => {
-        //console.log(val)
-      }),
-      throttleTime(200),
-      tap(val => {
-        //console.log(val);
-      })
-    ).subscribe(() => {
-      // ici traitement final
-      console.log("On va chercher de nouveaux assignments !")
+    // this.scroller.elementScrolled().pipe(
+    //   tap(event => {
+    //     //console.log(event);
+    //   }),
+    //   map(event => {
+    //     return this.scroller.measureScrollOffset('bottom');
+    //   }),
+    //   tap(val => {
+    //     //console.log("distance par rapport à la fin = " + val)
+    //   }),
+    //   pairwise(),
+    //   tap(val => {
+    //     /*
+    //     if(val[0] < val[1]) console.log("on monte")
+    //     else console.log("on descend")
+    //     */
+    //   }),
+    //   filter(([y1, y2]) => (y2 < y1 && y2 < 140)),
+    //   tap(val => {
+    //     //console.log(val)
+    //   }),
+    //   throttleTime(200),
+    //   tap(val => {
+    //     //console.log(val);
+    //   })
+    // ).subscribe(() => {
+    //   // ici traitement final
+    //   console.log("On va chercher de nouveaux assignments !")
 
-      // on le fait en tache de fond...
-      this.ngZone.run(() => {
-        this.page = this.nextPage;
-        this.getAssignmentsScrollInfini();
-      })
-    })
+    //   // on le fait en tache de fond...
+    //   this.ngZone.run(() => {
+    //     this.page = this.nextPage;
+    //     this.getAssignmentsScrollInfini();
+    //   })
+    // })
   }
 
   // appelé après le constructeur et AVANT l'affichage du composant

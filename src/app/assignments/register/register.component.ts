@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 
@@ -14,9 +15,19 @@ export class RegisterComponent implements OnInit {
   photo !: string;
   profil !: Number;
 
-  constructor(private authService:AuthService, private router:Router) { }
+  isLinear = true;
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+
+  constructor(private authService:AuthService, private router:Router,private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
   }
 
   onSubmit() {

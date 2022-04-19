@@ -21,7 +21,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { NonRenduDirective } from './shared/non-rendu.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 
@@ -33,6 +33,9 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './assignments/login/login.component';
 import { RegisterComponent } from './assignments/register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 const routes:Routes = [
   {
@@ -42,20 +45,32 @@ const routes:Routes = [
   {
     path:"home",
     component: AssignmentsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'Liste des devoirs',
+    }
   },
   {
     path:"add",
-    component: AddAssignmentComponent
+    component: AddAssignmentComponent,
+    data: {
+      breadcrumb: 'Ajouter un devoir',
+    }
   },
   {
     path:"assignment/:id",
-    component: AssignmentDetailComponent
+    component: AssignmentDetailComponent,
+    data: {
+      breadcrumb: 'Détail du devoir',
+    }
   },
   {
     path:"assignment/:id/edit",
     component: EditAssignmentComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'Modifier le devoir',
+    }
   },
   {
     path:"login",
@@ -76,14 +91,15 @@ const routes:Routes = [
     AddAssignmentComponent,
     EditAssignmentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, FormsModule,ReactiveFormsModule,
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,
-    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule
+    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule, MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
