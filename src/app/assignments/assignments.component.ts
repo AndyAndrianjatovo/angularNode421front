@@ -29,7 +29,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   
   // pagination
   page=1;
-  limit=10;
+  limit=10000;
   totalPages=0;
   pagingCounter=0;
   hasPrevPage=false;

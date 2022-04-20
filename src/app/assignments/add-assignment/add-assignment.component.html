@@ -1,4 +1,4 @@
-<form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
+<!-- <form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
   <mat-form-field>
     <input matInput placeholder="Nom de l'assignment" [(ngModel)]="nomAssignment" name="nom" required>
   </mat-form-field>
@@ -10,9 +10,6 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <!-- <mat-form-field>
-    <input matInput placeholder="idMatiere" [(ngModel)]="idMatiere" name="matiere" required>
-  </mat-form-field> -->
   <mat-form-field>
     <mat-select [(ngModel)]="idMatiere"  name="matiere">
         <mat-option>None</mat-option>
@@ -34,4 +31,206 @@
     <button mat-stroked-button color="primary" [disabled]="((!this.nomAssignment) || (!this.dateDeRendu))">
       Ajouter un devoir
     </button>
-</form>
+</form> -->
+
+<mat-drawer-container class="containerNgezaBe">
+  <mat-drawer mode="side" opened>
+    <div class="logoApp">
+      <span style="color: #ef8b42">A</span>ssignments<span
+        style="color: #ef8b42"
+        >A</span
+      >pp
+    </div>
+    <div class="menu">
+      <ul>
+        <li><img src="../../assets/maison.png" width="13px" alt="" /> Home</li>
+      </ul>
+    </div>
+    <div class="avatar"></div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <!-- <div class="headerContain">
+      <a routerLink="/add" class="ajouterBtn">
+        <button mat-flat-button color="accent">Ajouter un devoir</button>
+      </a>
+    </div> -->
+    <main class="container">
+      <mat-stepper [linear]="true" labelPosition="bottom" #stepper>
+        <mat-step [stepControl]="firstFormGroup" state="phone">
+          <form [formGroup]="firstFormGroup">
+            <!-- <ng-template matStepLabel class="headStep"
+              >Intitulé du devoir</ng-template
+            > -->
+            <!-- <mat-form-field appearance="fill"> -->
+            <!-- <mat-label>Name</mat-label> -->
+
+            <h3 style="margin-bottom: 1em">Ajout d'un nouveau devoir</h3>
+
+            <small style="margin-top: 1em"
+              >Veuillez renseigner ici l'intitulé du nouveau devoir, celui ci
+              servira à identifier le devoir en soit. Ce champ est
+              obligatoire.</small
+            >
+
+            <div class="groupInput">
+              <label for="assignment-note"
+                >Nom du devoir <span style="color: red">*</span></label
+              >
+              <input formControlName="firstCtrl" required />
+            </div>
+            <!-- </mat-form-field> -->
+            <div>
+              <button mat-button matStepperNext class="saveBouton">
+                Suivant
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <!-- <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                formControlName="secondCtrl"
+                placeholder="Ex. 1 Main St, New York, NY"
+                required
+              />
+            </mat-form-field>
+           -->
+            <h3 style="margin-bottom: 1em">Ajout d'un nouveau devoir</h3>
+
+            <small style="margin-top: 1em"
+              >Veuillez renseigner ici la date limite pour la rendu du nouveau
+              devoir, celui ci servira pourra vous aidez à identifier le devoir
+              en soit. Ce champ est obligatoire.</small
+            >
+
+            <div class="groupInput">
+              <label for="assignment-note"
+                >Date de rendu <span style="color: red">*</span></label
+              >
+              <input type="date" formControlName="secondCtrl" required />
+            </div>
+            <div style="display: flex; justify-content: flex-end">
+              <button mat-button matStepperPrevious class="cancelBouton">
+                Back
+              </button>
+              <button mat-button matStepperNext class="saveBouton">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <form [formGroup]="thirdFormGroup">
+            <!-- <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                formControlName="thirdCtrl"
+                placeholder="Ex. 1 Main St, New York, NY"
+                required
+              />
+            </mat-form-field> -->
+            <h3 style="margin-bottom: 1em">Ajout d'un nouveau devoir</h3>
+
+            <small style="margin-top: 1em"
+              >Attribuer une matière à ce nouveau devoir dans cette étape, celui
+              ci servira pourra vous aidez à identifier le devoir en soit. Ce
+              champ est obligatoire.</small
+            >
+
+            <div class="groupInput">
+              <label for="assignment-note"
+                >Matière <span style="color: red">*</span></label
+              >
+              <select name="" id="" formControlName="thirdCtrl">
+                <option selected disabled></option>
+                <option *ngFor="let option of matieres" [value]="option.id">
+                  {{ option.nom }}
+                </option>
+              </select>
+            </div>
+            <div style="display: flex; justify-content: flex-end">
+              <button mat-button matStepperPrevious class="cancelBouton">
+                Back
+              </button>
+              <button mat-button matStepperNext class="saveBouton">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup">
+          <form [formGroup]="fourthFormGroup">
+            <!-- <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                formControlName="fourthCtrl"
+                placeholder="Ex. 1 Main St, New York, NY"
+                required
+              />
+            </mat-form-field> -->
+            <h3 style="margin-bottom: 1em">Ajout d'un nouveau devoir</h3>
+
+            <small style="margin-top: 1em"
+              >Attribuer ce nouveau devoir à un élève, celui ci servira pourra
+              vous aidez à identifier le devoir en soit. Ce champ est
+              obligatoire.</small
+            >
+
+            <div class="groupInput">
+              <label for="assignment-note"
+                >Etudiant <span style="color: red">*</span></label
+              >
+              <select name="" id="" formControlName="fourthCtrl">
+                <!-- <option selected disabled></option> -->
+                <option *ngFor="let option of eleves" [value]="option.id">
+                  {{ option.nom }}
+                  <img src="{{ option.photo }}" alt="image" />
+                </option>
+              </select>
+            </div>
+            <div style="display: flex; justify-content: flex-end">
+              <button mat-button matStepperPrevious class="cancelBouton">
+                Back
+              </button>
+              <button mat-button matStepperNext class="saveBouton">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <!-- <ng-template matStepLabel>Done</ng-template> -->
+          <h3 style="margin-bottom: 1em">Ajout d'un nouveau devoir</h3>
+
+          <small style="margin-top: 1em"
+            >Voici la dernière étape ! vérifier les infos avant de
+            valider.</small
+          >
+          <p>Nom du devoir : {{ firstFormGroup.value.firstCtrl }}</p>
+          <p>
+            Date de rendu :
+            {{ secondFormGroup.value.secondCtrl | date: "longDate" }}
+          </p>
+          <p>
+            Matière : {{ getMatierebyId(thirdFormGroup.value.thirdCtrl)?.nom }}
+          </p>
+          <p>
+            Etudiant : {{ getElevebyId(fourthFormGroup.value.fourthCtrl)?.nom }}
+          </p>
+          <div>
+            <!-- <button mat-button matStepperPrevious>Back</button> -->
+            <button mat-button (click)="SaveAssign()" class="saveBouton">
+              Enregistrer
+            </button>
+          </div>
+        </mat-step>
+        <!-- Icon overrides. -->
+        <ng-template matStepperIcon="phone">
+          <mat-icon>call_end</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="chat">
+          <mat-icon>forum</mat-icon>
+        </ng-template>
+      </mat-stepper>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>
