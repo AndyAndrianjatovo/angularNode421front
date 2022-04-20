@@ -37,6 +37,7 @@ import { RegisterComponent } from './assignments/register/register.component';
 import { NoterComponent } from './assignments/noter/noter.component';
 
 import {MatChipsModule} from '@angular/material/chips'; 
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 const routes:Routes = [
   {
@@ -89,7 +90,7 @@ const routes:Routes = [
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
     RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
-    MatChipsModule
+    MatChipsModule,MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

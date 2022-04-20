@@ -1,11 +1,10 @@
-<main class="container">
   <!-- <a routerLink="/add" class="ajouterBtn">
     <button mat-flat-button color="accent">
       Ajouter Assignment
     </button>
   </a> -->
 
-  <h2>Liste des devoirs :</h2>
+  <!-- <h2>Liste des devoirs :</h2> -->
 
   <!-- <div class="barrePagination">
     <p>Page courante : {{page}}, assignments visibles : {{pagingCounter}} - {{pagingCounter + limit-1}}, nbPages total {{totalPages}}</p>
@@ -53,84 +52,111 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 -->
-
-<div cdkDropListGroup>
-  <div class="example-container">
-    <h2 class="sousTitre">To do</h2>
-
-    <div
-      cdkDropList
-      [cdkDropListData]="nonRendu"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of nonRendu" cdkDrag>
-        <mat-card class="example-card">
-          <mat-card-content>
-            <p>
-              {{ item.nom }}
-            </p>
-          </mat-card-content>
-          <img mat-card-image src="{{  getMatierebyId(item.idMatiere)?.image }}" alt="Photo de la matière">
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip color="accent" [ngClass]="{
-              web: getMatierebyId(item.idMatiere)?.nom == 'Web',
-              cloud: getMatierebyId(item.idMatiere)?.nom == 'Cloud'
-               
-            }" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
-          </mat-chip-list>
-          <div class="calendrierProf">
-
-            <div class="calendarPart">
-              Le devoir doit être rendu par <span class="nomEleve"> {{  getElevebyId(item.idEleve)?.nom }} </span> &nbsp; le <span class="dateDeRendu"> {{ item.dateDeRendu | date:'longDate'}}</span>
-            </div>
-            <div class="profPart">
-              <img src="{{  getProfbyId(getMatierebyId(item.idMatiere)!.idProf)?.photo }}" alt="" width="30px" height="30px" style="border-radius: 100%;">
-            </div>
-          </div>
-        </mat-card>
-      </div>
+<mat-drawer-container class="containerNgezaBe">
+  <mat-drawer mode="side" opened>
+    <div class="logoApp">
+      <span style="color: #ef8b42;">A</span>ssignments<span style="color: #ef8b42;">A</span>pp
     </div>
-  </div>
+    <div class="menu">
+      <ul>
+        <li> <img src="../../assets/maison.png" width="13px" alt=""> Home</li>
+      </ul>
+    </div>
+    <div class="avatar">
 
-  <div class="example-container">
-    <h2>Done</h2>
-
-    <div
-      cdkDropList
-      [cdkDropListData]="rendu"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of rendu" cdkDrag>
-        <mat-card class="example-card">
-          <mat-card-content>
-            <p>
-              {{ item.nom }}
-            </p>
-          </mat-card-content>
-          <img mat-card-image src="{{  getMatierebyId(item.idMatiere)?.image }}" alt="Photo de la matière">
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip color="accent"
-            [ngClass]="{
-              web: getMatierebyId(item.idMatiere)?.nom == 'Web',
-              cloud: getMatierebyId(item.idMatiere)?.nom == 'Cloud'
-               
-            }" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
-          </mat-chip-list>
-          <div class="calendrierProf">
-
-            <div class="calendarPart">
-              Le devoir a été rendu par <span class="nomEleve"> {{  getElevebyId(item.idEleve)?.nom }} </span>. La date limite de rendu est le <span class="dateDeRendu"> {{ item.dateDeRendu | date:'longDate'}}</span>
-            </div>
-            <div class="profPart">
-              <img src="{{  getProfbyId(getMatierebyId(item.idMatiere)!.idProf)?.photo }}" alt="" width="30px" height="30px" style="border-radius: 100%;">
-            </div>
-          </div>
-        </mat-card>
-      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="headerContain">
+      <a routerLink="/add" class="ajouterBtn">
+        <button mat-flat-button color="accent">
+          Ajouter un devoir
+        </button>
+      </a>
+    </div>
+    <main class="container">
      
-    </div>
-  </div>
-</div>
+      <div cdkDropListGroup>
+        <div class="example-container">
+          <h2 class="sousTitre"> <span class="statusToDo"></span> Non rendu</h2>
+    
+          <div
+            cdkDropList
+            [cdkDropListData]="nonRendu"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of nonRendu" cdkDrag>
+              <mat-card class="example-card">
+                <mat-card-content>
+                  <p>
+                    {{ item.nom }}
+                  </p>
+                </mat-card-content>
+                <img mat-card-image src="{{  getMatierebyId(item.idMatiere)?.image }}" alt="Photo de la matière">
+                <mat-chip-list aria-label="Fish selection">
+                  <mat-chip color="accent" [ngClass]="{
+                    web: getMatierebyId(item.idMatiere)?.nom == 'Web',
+                    cloud: getMatierebyId(item.idMatiere)?.nom == 'Cloud'
+                    
+                  }" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
+                </mat-chip-list>
+                <div class="calendrierProf">
+    
+                  <div class="calendarPart">
+                    Le devoir doit être rendu par <span class="nomEleve"> {{  getElevebyId(item.idEleve)?.nom }} </span> &nbsp; le <span class="dateDeRendu"> {{ item.dateDeRendu | date:'longDate'}}</span>
+                  </div>
+                  <div class="profPart">
+                    <img src="{{  getProfbyId(getMatierebyId(item.idMatiere)!.idProf)?.photo }}" alt="" width="30px" height="30px" style="border-radius: 100%;">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+    
+        <div class="example-container">
+          <h2 class="sousTitre"><span class="statusDone"></span>Rendu</h2>
+    
+          <div
+            cdkDropList
+            [cdkDropListData]="rendu"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of rendu" cdkDrag>
+              <mat-card class="example-card">
+                <mat-card-content>
+                  <p>
+                    {{ item.nom }}
+                  </p>
+                </mat-card-content>
+                <img mat-card-image src="{{  getMatierebyId(item.idMatiere)?.image }}" alt="Photo de la matière">
+                <mat-chip-list aria-label="Fish selection">
+                  <mat-chip color="accent"
+                  [ngClass]="{
+                    web: getMatierebyId(item.idMatiere)?.nom == 'Web',
+                    cloud: getMatierebyId(item.idMatiere)?.nom == 'Cloud'
+                    
+                  }" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
+                </mat-chip-list>
+                <div class="calendrierProf">
+    
+                  <div class="calendarPart">
+                    Le devoir a été rendu par <span class="nomEleve"> {{  getElevebyId(item.idEleve)?.nom }} </span>. La date limite de rendu est le <span class="dateDeRendu"> {{ item.dateDeRendu | date:'longDate'}}</span>
+                  </div>
+                  <div class="profPart">
+                    <img src="{{  getProfbyId(getMatierebyId(item.idMatiere)!.idProf)?.photo }}" alt="" width="30px" height="30px" style="border-radius: 100%;">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>
+
 
 
 
@@ -169,4 +195,3 @@
 
 
 
-</main>

@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .rendu {
   color:green;
 }
 
+.logoApp{
+  font-family: 'Pacifico', cursive;
+  display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 1em;
+}
 .nonRendu {
   color:red;
   background-color: yellow;
@@ -15,7 +24,7 @@
 .container {
   display:flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   padding: 1em;
 }
 .sideRight{
@@ -26,6 +35,30 @@
 
 .ajouterBtn {
   align-self: flex-end;
+  
+}
+.ajouterBtn button{
+  background-color: #ef8b42;
+  font-family: "Poppins",sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+.menu ul{
+  margin-top: 3em;
+display: flex;
+justify-content: center;
+align-items: center;
+list-style: none;
+font-size: 13px;
+font-family: "Poppins";
+}
+
+.menu ul li{
+  display: flex;
+justify-content: center;
+align-items: center;
+gap: 1em;
+
 }
 
 table {
@@ -53,11 +86,26 @@ table {
   display: inline-block;
   vertical-align: top;
 }
+.containerNgezaBe{
+  width: 100%;
+  background: #f8f6f5;
+}
+
+.mat-drawer {
+  width: 200px;
+}
+.headerContain{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 2em;
+margin: 1em;
+}
 
 .example-list {
   /* border: solid 1px #ccc; */
   min-height: 60px;
-  background: white;
+  background: #f8f6f5;
   border-radius: 4px;
   overflow: hidden;
   display: block;
@@ -73,7 +121,7 @@ table {
   justify-content: space-between;
   box-sizing: border-box;
   cursor: move;
-  background: white;
+  background: #f8f6f5;
   font-size: 14px;
   margin-bottom: 1em;
 }
@@ -107,13 +155,33 @@ table {
 
 .sousTitre{
   color: #464646;
-  font-size: small;
-  margin: 1em 0;
+  font-size: 14px;
+margin: 0 1em;
+display: flex;
+align-items: center;
+gap: 0.5em;
+}
+
+.statusToDo,.statusDone{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+.statusToDo{
+  background-color: #0085ff;
+}
+.statusDone{
+  background-color: #0bb927;
 }
 
 .mat-card{
   border-radius: 15px;
   width: 100%;
+}
+
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: unset;
 }
 
 .mat-card-image {
