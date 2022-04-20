@@ -9,6 +9,7 @@ import { Assignment } from './assignment.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { NoterComponent } from './noter/noter.component';
+import { Users } from './users.model';
 
 @Component({
   selector: 'app-assignments',
@@ -20,6 +21,9 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu','note','remarques','idMatiere','idEleve'];
 
   matiere:Matiere[] = [];
+  eleve:Users[] =[];
+  prof:Users[] =[];
+  users:Users[] =[];
   rendu:Assignment[] = [];
   nonRendu:Assignment[] = [];
   // pagination
@@ -34,7 +38,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   token: any;
 
-  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone , private matiereService:MatiereService,public dialog: MatDialog) {}
+  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone , private matiereService:MatiereService, private usersService:UsersService,public dialog: MatDialog) {}
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -82,6 +86,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
     this.token = sessionStorage.getItem('token');
     this.getAssignments(this.token);
     this.getMatiere();
+    this.getUsers();
   }
 
   
@@ -106,6 +111,15 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
       console.log("Après l'appel au service");
   }
 
+getUsers() {
+  this.usersService.getUsers()
+  .subscribe(reponse => {
+    this.users = reponse.docs;
+    this.eleve = this.users.filter(a=>a.profil == 10);
+    this.prof = this.users.filter(a=>a.profil == 20);
+  });
+}
+
 getMatiere() {
   this.matiereService.getMatieres()
   .subscribe(reponse => {
@@ -116,6 +130,16 @@ getMatiere() {
 getMatierebyId(id: Number){
     var mat = this.matiere.find(e => e.id == id );
     return mat
+}
+
+getElevebyId(id: Number){
+  var a = this.eleve.find(e => e.id == id );
+  return a
+}
+
+getProfbyId(id: Number){
+  var a = this.prof.find(e => e.id == id );
+  return a
 }
 
 drop(event: CdkDragDrop<Assignment[]>) {

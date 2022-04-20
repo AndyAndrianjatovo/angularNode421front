@@ -96,6 +96,12 @@
         <p>
           Matiere :  {{  getMatierebyId(assignment.idMatiere)?.nom }}.
         </p>
+        <p>
+          eleve :  {{  getElevebyId(assignment.idEleve)?.nom }}.
+        </p>
+        <p>
+          prof :  {{  getProfbyId(getMatierebyId(assignment.idMatiere)!.idProf)?.nom }}.
+        </p>
         <mat-list-item>
           <div *ngIf="assignment.rendu; else nonsoumis" appRendu>
             <p>

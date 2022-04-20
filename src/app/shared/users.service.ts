@@ -16,8 +16,8 @@ export class UsersService {
     this.loggingService.setNiveauTrace(2);
   }
 
-  getUsers(page:number, limit:number):Observable<any> {
-    return this.http.get<Users[]>(this.url + "?page=" + page + "&limit=" + limit);
+  getUsers():Observable<any> {
+    return this.http.get<Users[]>(this.url);
   }
 
   getUserByProfil(profil:number):Observable<any> {
