@@ -8,9 +8,20 @@
   border: 2px dashed orange;
 }
 
+.ngezaBe{
+  display: flex;
+}
+
 .container {
   display:flex;
   flex-direction: column;
+  width: 50%;
+  padding: 1em;
+}
+.sideRight{
+  width: 30%;
+  padding: 1em;
+  border-left: #e4e4e4 1px solid;
 }
 
 .ajouterBtn {
@@ -36,15 +47,15 @@ table {
 }
 
 .example-container {
-  width: 400px;
+  width: 48%;
   max-width: 100%;
-  margin: 0 25px 25px 0;
+  margin: 0 1%;
   display: inline-block;
   vertical-align: top;
 }
 
 .example-list {
-  border: solid 1px #ccc;
+  /* border: solid 1px #ccc; */
   min-height: 60px;
   background: white;
   border-radius: 4px;
@@ -54,7 +65,7 @@ table {
 
 .example-box {
   padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
+  /* border: solid 1px #ccc; */
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
@@ -64,6 +75,7 @@ table {
   cursor: move;
   background: white;
   font-size: 14px;
+  margin-bottom: 1em;
 }
 
 .cdk-drag-preview {
@@ -82,10 +94,86 @@ table {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-box:last-child {
-  border: none;
-}
+
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.titre{
+  color: #1B2D3E;
+  margin-bottom: 1em;
+}
+
+.sousTitre{
+  color: #464646;
+  font-size: small;
+  margin: 1em 0;
+}
+
+.mat-card{
+  border-radius: 15px;
+  width: 100%;
+}
+
+.mat-card-image {
+  max-height: 200px;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+.mat-card-image:first-child {
+  margin-top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.mat-card-content{
+  margin-top: 1em;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-accent{
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  background-color: #d9b496;
+  padding: 5px 15px;
+  margin: 0;
+}
+
+#calendarIcon{
+  width: 15px;
+  height: 15px;
+  margin-right: 1em;
+}
+.calendarPart{
+  margin-top: 1em;
+  font-family: "Poppins", sans-serif;
+  color: gray;
+  font-size: 12px;
+  /* font-weight: 700; */
+}
+.nomEleve{
+  text-transform: capitalize;
+  font-style: italic;
+  font-weight: bold;
+  color: #464646;
+}
+.dateDeRendu{
+  white-space: nowrap;
+  color: #9b2727;
+}
+.calendrierProf{
+  display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1em;
 }

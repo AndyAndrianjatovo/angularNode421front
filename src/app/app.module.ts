@@ -36,6 +36,8 @@ import { LoginComponent } from './assignments/login/login.component';
 import { RegisterComponent } from './assignments/register/register.component';
 import { NoterComponent } from './assignments/noter/noter.component';
 
+import {MatChipsModule} from '@angular/material/chips'; 
+
 const routes:Routes = [
   {
     path:"",
@@ -86,7 +88,8 @@ const routes:Routes = [
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
-    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule
+    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
