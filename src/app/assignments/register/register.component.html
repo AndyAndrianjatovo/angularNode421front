@@ -54,9 +54,14 @@
           id="photo"
           class="inp-control"
           placeholder="Enter your e-mail"
-          [(ngModel)]="photo"
+          (change)="fileChangeEvent($event)"
         />
       </div>
+
+      <ng-container *ngIf="isImageSaved">
+        <img [src]="cardImageBase64" />
+      </ng-container>
+
       <div class="input">
         <label for="profil">Profil</label>
         <input

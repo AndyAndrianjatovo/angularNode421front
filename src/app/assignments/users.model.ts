@@ -3,6 +3,8 @@ export class Users {
     nom!:string;
     password!:string;
     id!:Number;
+    photo!:string;
+    profil!:Number;
   }
   
   export class UsersToken {
