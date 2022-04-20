@@ -1,0 +1,65 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.mat-dialog-container{
+    border-radius: 10px;
+}
+.mat-dialog-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.001em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.closeTitre{
+    cursor: pointer;
+}
+.groupInput{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+.groupInput label{
+    font-size: 14px;
+    color: #464646;
+    font-weight: 500;
+}
+
+.groupInput input, .groupInput textarea{
+    padding: 0 1em;
+    border-radius: 6px;
+    border: 1px #c4c4c4 solid;
+}
+.groupInput input{
+    height: 35px;
+}
+.groupInput textarea{
+    font-size: 14px;
+}
+.cancelBouton{
+    background-color: transparent;
+    border: none;
+    color: #0085ff;
+    cursor: pointer;
+    float: right;
+}
+.saveBouton,.dropBouton{
+    background-color: #0085ff;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
+}
+
+.dropBouton{
+    background-color: #ff4343;
+}
+.actionBouton{
+    margin-top: 1em;
+}
+.cancelBoutonNR{
+    color: #ff4343;
+}

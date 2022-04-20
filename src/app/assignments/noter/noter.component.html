@@ -1,31 +1,46 @@
 
-<h1 mat-dialog-title> Noter ny eto {{devoir.rendu }}</h1>
+<h1 mat-dialog-title *ngIf="!devoir.rendu"> 
+  <div class="texteTitre">Rendre le devoir</div>
+  <div class="closeTitre" (click)="closeModals()"><img src="../../../assets/croix-cercle.png" width="15px" alt=""></div>
+</h1>
 <div mat-dialog-content *ngIf="!devoir.rendu">
     <form ngForm class="form" #formupdate (submit)="onSaveAssignment(); formupdate.reset(); ">
-        <mat-form-field>
+        <!-- <mat-form-field>
         <input matInput placeholder="Modifier la note" [(ngModel)]="note" name="assignment-note">
         </mat-form-field>
         <mat-form-field>
         <input matInput placeholder="Ajouter des remarques" [(ngModel)]="remarques" name="assignment-remarques">
-        </mat-form-field>
-        <button mat-raised-button color="primary" >
-          Sauver
+        </mat-form-field> -->
+        <div class="groupInput">
+          <label for="assignment-note">Note <span style="color: red;">*</span></label>
+          <input type="number" [(ngModel)]="note" name="assignment-note" id="assignment-note" required>
+        </div>
+        <div class="groupInput">
+          <label for="assignment-remarques">Remarque</label>
+          <textarea name="assignment-remarques" id="assignment-remarques" [(ngModel)]="remarques" cols="20" rows="5"></textarea>
+        </div>
+        <button mat-raised-button class="saveBouton" >
+          Enregistrer
         </button>
+        <button mat-button (click)="onNoClick()" class="cancelBouton">Annuler</button>
       </form>
 </div>
 
+<h1 mat-dialog-title *ngIf="devoir.rendu"> 
+  <div class="texteTitre">Annulation</div>
+  <div class="closeTitre" (click)="closeModals()"><img src="../../../assets/croix-cercle.png" width="15px" alt=""></div>
+</h1>
 <div mat-dialog-content *ngIf="devoir.rendu">
     <form ngForm class="form" #formupdate (submit)="NepasRendre(); formupdate.reset(); ">
-        <p> etes vous certain de ne plus rendre ce dervoir? cela suprrimera la note et les remarques </p>
-        <button mat-raised-button color="primary" >
-          Sauver
-        </button>
+        <p> Êtes vous certain de ne plus rendre ce devoir ? <small> Cela suprrimera la note et les remarques. </small></p>
+        <div class="actionBouton">
+          <button mat-raised-button color="primary" class="dropBouton" >
+            Oui
+          </button>
+        </div>
       </form>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <span class="close" (click)="closeModals()">
-    close dialog
-  </span>
-</div>
+<!-- <div mat-dialog-actions *ngIf="devoir.rendu">
+  <button mat-button (click)="onNoClick()"  class="cancelBoutonNR">Annuler</button>
+</div> -->

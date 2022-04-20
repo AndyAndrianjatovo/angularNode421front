@@ -149,6 +149,14 @@ table {
   margin: 0;
 }
 
+.cloud{
+  background-color: #5b8d8d !important;
+}
+
+.web{
+  background-color: #d9b496 !important;
+}
+
 #calendarIcon{
   width: 15px;
   height: 15px;

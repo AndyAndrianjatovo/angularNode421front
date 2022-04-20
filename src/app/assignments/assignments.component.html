@@ -72,12 +72,16 @@
           </mat-card-content>
           <img mat-card-image src="{{  getMatierebyId(item.idMatiere)?.image }}" alt="Photo de la matière">
           <mat-chip-list aria-label="Fish selection">
-            <mat-chip color="accent" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
+            <mat-chip color="accent" [ngClass]="{
+              web: getMatierebyId(item.idMatiere)?.nom == 'Web',
+              cloud: getMatierebyId(item.idMatiere)?.nom == 'Cloud'
+               
+            }" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
           </mat-chip-list>
           <div class="calendrierProf">
 
             <div class="calendarPart">
-              Le devoir doit être rendu par <span class="nomEleve"> {{  getElevebyId(item.idEleve)?.nom }} </span>  le <span class="dateDeRendu"> {{ item.dateDeRendu | date:'longDate'}}</span>
+              Le devoir doit être rendu par <span class="nomEleve"> {{  getElevebyId(item.idEleve)?.nom }} </span> &nbsp; le <span class="dateDeRendu"> {{ item.dateDeRendu | date:'longDate'}}</span>
             </div>
             <div class="profPart">
               <img src="{{  getProfbyId(getMatierebyId(item.idMatiere)!.idProf)?.photo }}" alt="" width="30px" height="30px" style="border-radius: 100%;">
@@ -105,7 +109,12 @@
           </mat-card-content>
           <img mat-card-image src="{{  getMatierebyId(item.idMatiere)?.image }}" alt="Photo de la matière">
           <mat-chip-list aria-label="Fish selection">
-            <mat-chip color="accent" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
+            <mat-chip color="accent"
+            [ngClass]="{
+              web: getMatierebyId(item.idMatiere)?.nom == 'Web',
+              cloud: getMatierebyId(item.idMatiere)?.nom == 'Cloud'
+               
+            }" selected>{{  getMatierebyId(item.idMatiere)?.nom }}</mat-chip>
           </mat-chip-list>
           <div class="calendrierProf">
 
