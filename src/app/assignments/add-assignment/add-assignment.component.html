@@ -24,7 +24,7 @@
   <mat-form-field>
     <mat-select [(ngModel)]="idEleve" name="eleve">
         <mat-option>None</mat-option>
-        <mat-option *ngFor='let option of eleves' [value]='option.nom' >
+        <mat-option *ngFor='let option of eleves' [value]='option.id' >
           <img src="{{ option.photo }}" alt="sary"/>
         </mat-option>
 
