@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -33,6 +34,7 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './assignments/login/login.component';
 import { RegisterComponent } from './assignments/register/register.component';
+import { NoterComponent } from './assignments/noter/noter.component';
 
 const routes:Routes = [
   {
@@ -76,13 +78,14 @@ const routes:Routes = [
     AddAssignmentComponent,
     EditAssignmentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NoterComponent
   ],
   imports: [
     BrowserModule, FormsModule,
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,
+    MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
     RouterModule.forRoot(routes), HttpClientModule, ScrollingModule
   ],
   providers: [],

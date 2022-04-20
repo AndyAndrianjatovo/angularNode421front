@@ -7,7 +7,8 @@ import { MatiereService } from '../shared/matiere.service';
 import { UsersService } from '../shared/users.service';
 import { Assignment } from './assignment.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-
+import { MatDialog } from '@angular/material/dialog';
+import { NoterComponent } from './noter/noter.component';
 
 @Component({
   selector: 'app-assignments',
@@ -33,7 +34,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   token: any;
 
-  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone , private matiereService:MatiereService) {}
+  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone , private matiereService:MatiereService,public dialog: MatDialog) {}
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -121,14 +122,23 @@ drop(event: CdkDragDrop<Assignment[]>) {
   if (event.previousContainer === event.container) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   } else {
-    transferArrayItem(
-      event.previousContainer.data,
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex,
-    );
+    this.openDialog(event.previousContainer.data[event.previousIndex],event);
   }
 }
+
+
+openDialog( devoir: Assignment , event: CdkDragDrop<Assignment[]>): void {
+  const dialogRef = this.dialog.open(NoterComponent,
+    {
+      data: { assign: devoir , evenement : event }
+    });
+}
+
+
+
+
+
+
 
   getAssignmentsScrollInfini() {
     // demander les données au service de gestion des assignments...
