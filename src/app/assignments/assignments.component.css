@@ -42,6 +42,7 @@ margin-top: 1em;
   font-family: "Poppins",sans-serif;
   font-size: 12px;
   font-weight: bold;
+  color: #fff;
 }
 .menu ul{
   margin-top: 3em;
@@ -252,4 +253,57 @@ gap: 0.5em;
 align-items: center;
 justify-content: space-between;
 gap: 1em;
+}
+
+.containerMain{
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.container2{
+  width: 39%;
+  padding: 1em;
+  padding-top: 3.5em;
+}
+
+.demo-inline-calendar-card {
+  width: 80%;
+  margin: 0 auto;
+}
+
+button.datyMisyEvent{
+  background-color: #138b83;
+  border-radius: 100% ;
+}
+
+button.datyMisyEvent .mat-calendar-body-cell-content{
+  color: #fff;
+}
+
+.afaireToday{
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.afaireToday .mat-card{
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.titreAfaireToday{
+  font-size: 14px;
+  font-family: 'Poppins',sans-serif;
+}
+
+.bgAfaireToday{
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  color: white;
 }

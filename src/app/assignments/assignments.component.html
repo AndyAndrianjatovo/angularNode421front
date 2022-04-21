@@ -69,11 +69,12 @@
   <mat-drawer-content>
     <div class="headerContain">
       <a routerLink="/add" class="ajouterBtn">
-        <button mat-flat-button color="accent">
+        <button mat-flat-button>
           Ajouter un devoir
         </button>
       </a>
     </div>
+    <div class="containerMain">
     <main class="container">
      
       <div cdkDropListGroup>
@@ -154,6 +155,30 @@
         </div>
       </div>
     </main>
+    <main class="container2">
+      <mat-card class="demo-inline-calendar-card" (click)="getAssignmentsByDate()">
+        <mat-calendar [dateClass]="dateClass" [(selected)]="selectedDate"   ></mat-calendar>
+      </mat-card>
+      <!-- <p>Selected date: {{selectedDate | date:'shortDate'}}</p> -->
+      <div class="afaireToday">
+        <mat-card *ngFor="let item of afaireToday">
+          <div class="bgAfaireToday"[ngClass]="{
+            web: item.idMatiere == 1,
+            cloud: item.idMatiere == 2
+            
+          }" >
+          <p class="titreAfaireToday">
+            {{item.nom}} 
+          </p>
+           <small *ngIf="item.rendu">Ce devoir est déjà rendu.</small>
+           <small *ngIf="!item.rendu">Ce devoir n'est pas encore rendu.</small>
+          </div>
+        </mat-card>
+      </div>
+      
+    </main>
+  </div>
+
   </mat-drawer-content>
 </mat-drawer-container>
 
