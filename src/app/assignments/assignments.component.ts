@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AfterViewInit, Component, NgZone, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
 import { Matiere } from '../matiere/matiere.model';
 import { AssignmentsService } from '../shared/assignments.service';
@@ -10,11 +10,13 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { MatDialog } from '@angular/material/dialog';
 import { NoterComponent } from './noter/noter.component';
 import { Users } from './users.model';
+import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AssignmentsComponent implements OnInit, AfterViewInit {
   assignments:Assignment[] = [];
@@ -26,10 +28,12 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   users:Users[] =[];
   rendu:Assignment[] = [];
   nonRendu:Assignment[] = [];
+  selectedDate: Date | null = new Date();
+  afaireToday:Assignment[] | undefined = [];
   
   // pagination
   page=1;
-  limit=10;
+  limit=10000;
   totalPages=0;
   pagingCounter=0;
   hasPrevPage=false;
@@ -39,7 +43,28 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   token: any;
 
+  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+    // Only highligh dates inside the month view.
+    this.getAssignmentsByDate();
+    if (view === 'month') {
+      const date = cellDate.getDate();
+      let a = "";
+      for(let i=0; i<this.afaireToday!.length; i++){
+        a += `${date} === ${this.afaireToday![i].dateDeRendu}`;
+        if(i != this.afaireToday!.length-1) a += " || ";
+      }
+      console.log(a);
+
+      // Highlight the 1st and 20th day of each month.
+      return a ? 'datyMisyEvent' : '';
+    }
+
+    return '';
+  };
+
   constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone , private matiereService:MatiereService, private usersService:UsersService,public dialog: MatDialog) {}
+
+
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -88,6 +113,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
     this.getAssignments(this.token);
     this.getMatiere();
     this.getUsers();
+    this.getAssignmentsByDate();
   }
 
   
@@ -205,6 +231,17 @@ openDialog( devoir: Assignment , event: CdkDragDrop<Assignment[]>): void {
   dernierePage() {
     this.page = this.totalPages;
     this.getAssignments(this.token);
+  }
+
+  getAssignmentsByDate() {
+    this.afaireToday = [];
+    this.assignments.filter(e => {
+      var a:Date = e.dateDeRendu;
+      var b = new Date(a);
+      if(b.toDateString() === this.selectedDate?.toDateString()) {
+        this.afaireToday?.push(e);
+      }
+    });
   }
 
 }

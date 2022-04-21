@@ -1,5 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .form {
   display:flex;
   flex-direction: column;
   margin:5px;
+}
+
+
+.logoApp{
+  font-family: 'Pacifico', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1em;
+    height: 100%;
+}
+.mat-stepper-vertical, .mat-stepper-horizontal{
+  /* min-height: 400px; */
+  border-radius: 15px;
+  box-shadow: 2px 1px 5px 0px rgba(255,255,255,0.3);
+  -webkit-box-shadow: 2px 1px 5px 0px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 2px 1px 5px 0px rgba(255, 255, 255, 0.3);
+  max-width: 35%;
+}
+.mat-step-header .mat-step-icon-state-edit{
+  background-color: #ffc107;
+}
+.mat-step-header,.headStep,.mat-step-text-label,mat-step-header{
+  font-family: 'Poppins',sans-serif;
+  font-size: 13px;
+
+}
+.mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
+  letter-spacing: 0;
+}
+.sideRight{
+  width: 30%;
+  padding: 1em;
+  border-left: #e4e4e4 1px solid;
+}
+
+.ajouterBtn {
+  align-self: flex-end;
+  
+}
+.ajouterBtn button{
+  background-color: #ef8b42;
+  font-family: "Poppins",sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+.menu ul{
+  margin-top: 3em;
+display: flex;
+justify-content: center;
+align-items: center;
+list-style: none;
+font-size: 13px;
+font-family: "Poppins";
+}
+
+.menu ul li{
+  display: flex;
+justify-content: center;
+align-items: center;
+gap: 1em;
+
+}
+.containerNgezaBe{
+  width: 100vw;
+  height: 100vh;
+  background: #f8f6f5;
+}
+
+.mat-drawer {
+  width: 200px;
+}
+.headerContain{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 2em;
+margin: 1em;
+}
+
+.example-list {
+  /* border: solid 1px #ccc; */
+  min-height: 60px;
+  background: #f8f6f5;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  /* border: solid 1px #ccc; */
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: #f8f6f5;
+  font-size: 14px;
+  margin-bottom: 1em;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.titre{
+  color: #1B2D3E;
+  margin-bottom: 1em;
+}
+
+.sousTitre{
+  color: #464646;
+  font-size: 14px;
+margin: 0 1em;
+display: flex;
+align-items: center;
+gap: 0.5em;
+}
+
+.statusToDo,.statusDone{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+.statusToDo{
+  background-color: #0085ff;
+}
+.statusDone{
+  background-color: #0bb927;
+}
+
+.mat-card{
+  border-radius: 15px;
+  width: 100%;
+}
+
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: unset;
+}
+
+.mat-card-image {
+  max-height: 200px;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+.mat-card-image:first-child {
+  margin-top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.mat-card-content{
+  margin-top: 1em;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-accent{
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  background-color: #d9b496;
+  padding: 5px 15px;
+  margin: 0;
+}
+
+.cloud{
+  background-color: #5b8d8d !important;
+}
+
+.web{
+  background-color: #d9b496 !important;
+}
+
+#calendarIcon{
+  width: 15px;
+  height: 15px;
+  margin-right: 1em;
+}
+.calendarPart{
+  margin-top: 1em;
+  font-family: "Poppins", sans-serif;
+  color: gray;
+  font-size: 12px;
+  /* font-weight: 700; */
+}
+.nomEleve{
+  text-transform: capitalize;
+  font-style: italic;
+  font-weight: bold;
+  color: #464646;
+}
+.dateDeRendu{
+  white-space: nowrap;
+  color: #9b2727;
+}
+.calendrierProf{
+  display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1em;
+}
+
+.groupInput{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+.groupInput label{
+  font-size: 14px;
+  color: #464646;
+  font-weight: 500;
+}
+
+.groupInput input, .groupInput textarea, .groupInput select{
+  padding: 0 1em;
+  border-radius: 6px;
+  border: 1px #c4c4c4 solid;
+}
+.groupInput input, .groupInput select{
+  height: 40px;
+  margin-top: 0.5em;
+}
+.groupInput textarea{
+  font-size: 14px;
+}
+.groupInput select{
+  background-color: transparent;
+}
+.saveBouton,.dropBouton{
+  background-color: #0085ff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+  margin-top: 2em;
+}
+.cancelBouton{
+  background-color: transparent;
+  border: none;
+  color: #0085ff;
+  cursor: pointer;
+  float: right;
+  margin-top: 2em;
+
 }

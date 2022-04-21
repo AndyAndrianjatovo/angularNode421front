@@ -22,7 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { NonRenduDirective } from './shared/non-rendu.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 
@@ -37,6 +37,8 @@ import { RegisterComponent } from './assignments/register/register.component';
 import { NoterComponent } from './assignments/noter/noter.component';
 
 import {MatChipsModule} from '@angular/material/chips'; 
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const routes:Routes = [
   {
@@ -89,7 +91,7 @@ const routes:Routes = [
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
     RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
-    MatChipsModule
+    MatChipsModule,MatSidenavModule,MatStepperModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
