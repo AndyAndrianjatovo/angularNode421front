@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Matiere } from 'src/app/matiere/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { MatiereService } from 'src/app/shared/matiere.service';
+import { UsersService } from 'src/app/shared/users.service';
 import { Assignment } from '../assignment.model';
+import { Users } from '../users.model';
 
 @Component({
   selector: 'app-edit-assignment',
@@ -17,10 +21,15 @@ export class EditAssignmentComponent implements OnInit {
   idMatiere!: number;
   idEleve!: number;
 
+  matieres: Matiere[] = [];
+  eleves : Users[] = [];
+
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private matiereService :MatiereService, 
+    private usersService :UsersService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +41,18 @@ export class EditAssignmentComponent implements OnInit {
     console.log(this.route.snapshot.fragment);
 
     this.getAssignment();
+    this.matiereService.getMatieres()
+    .subscribe(reponse => {
+      this.matieres = reponse.docs;
+      console.log(reponse.docs);
+    });
+    
+    this.usersService.getUserByProfil(10)
+    .subscribe(reponse => {
+      this.eleves = reponse;
+      console.log(reponse);
+    });
+
   }
 
   getAssignment() {

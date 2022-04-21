@@ -10,18 +10,38 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Modifier la note" [(ngModel)]="note" name="assignment-note">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Ajouter des remarques" [(ngModel)]="remarques" name="assignment-remarques">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Modifier la matiere" [(ngModel)]="idMatiere" name="assignment-matiere">
-    </mat-form-field>
-    <mat-form-field>
+
+    <div *ngIf="assignment.rendu">
+      <mat-form-field>
+        <input matInput placeholder="Modifier la note" [(ngModel)]="note" name="assignment-note">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Ajouter des remarques" [(ngModel)]="remarques" name="assignment-remarques">
+      </mat-form-field>
+    </div>
+  
+    
+      <!-- <input matInput placeholder="Modifier la matiere" [(ngModel)]="idMatiere" name="assignment-matiere"> -->
+      <select name="idMatiere"  [(ngModel)]="idMatiere"  >
+        <option *ngFor="let option of matieres" [value]="option.id">
+          {{ option.nom }}
+        </option>
+      </select>
+
+      <br>
+
+      <select name="idEleve"  [(ngModel)]="idEleve"  >
+        <option *ngFor="let option of eleves" [value]="option.id">
+          {{ option.nom }}
+        </option>
+      </select>
+
+      <br>
+
+   
+    <!-- <mat-form-field>
       <input matInput placeholder="Modifier Auteur" [(ngModel)]="idEleve" name="assignment-eleve">
-    </mat-form-field>
+    </mat-form-field> -->
 
     <button mat-raised-button color="primary" [disabled]="((!nomAssignment)||(!dateDeRendu))">
       Sauver

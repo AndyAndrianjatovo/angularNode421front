@@ -7,6 +7,8 @@ import { MatiereService } from 'src/app/shared/matiere.service';
 import { UsersService } from 'src/app/shared/users.service';
 import { Assignment } from '../assignment.model';
 import { Users } from '../users.model';
+import { MatDialog } from '@angular/material/dialog';
+import { NoterComponent } from '../noter/noter.component';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -25,7 +27,8 @@ export class AssignmentDetailComponent implements OnInit {
     private usersService:UsersService,
     private authService:AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +44,7 @@ export class AssignmentDetailComponent implements OnInit {
     // l'assignment qui a cet id !
     this.matiereService.getMatiere(id).subscribe((result) => {
       this.matiere = result! ;
-      //this.getProf(this.matiere.idProf);
+      this.getProf(result!.idProf);
     });
     
   }
@@ -93,15 +96,20 @@ export class AssignmentDetailComponent implements OnInit {
 
   onAssignmentRendu() {
     if (this.assignmentTransmis) {
-      this.assignmentTransmis.rendu = true;
-
-      this.assignmentsService
-        .updateAssignment(this.assignmentTransmis)
-        .subscribe((reponse) => {
-          console.log(reponse.message);
-          // et on navigue vers la page d'accueil pour afficher la liste
-          this.router.navigate(['/home']);
+      const dialogRef = this.dialog.open(NoterComponent,
+        {
+          data: { assign: this.assignmentTransmis , evenement : null }
         });
+
+      // this.assignmentTransmis.rendu = true;
+
+      // this.assignmentsService
+      //   .updateAssignment(this.assignmentTransmis)
+      //   .subscribe((reponse) => {
+      //     console.log(reponse.message);
+      //     // et on navigue vers la page d'accueil pour afficher la liste
+      //     this.router.navigate(['/home']);
+      //   });
     }
   }
 

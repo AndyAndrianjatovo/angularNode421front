@@ -49,12 +49,15 @@ export class NoterComponent implements OnInit {
         this.router.navigate(['/home']);
       });
       this.closeModals();
-      transferArrayItem(
-        this.data.evenement.previousContainer.data,
-        this.data.evenement.container.data,
-        this.data.evenement.previousIndex,
-        this.data.evenement.currentIndex,
-      );
+      if(this.data.evenement){
+        transferArrayItem(
+          this.data.evenement.previousContainer.data,
+          this.data.evenement.container.data,
+          this.data.evenement.previousIndex,
+          this.data.evenement.currentIndex,
+        );
+      }
+      
   }
 
   NepasRendre(){
