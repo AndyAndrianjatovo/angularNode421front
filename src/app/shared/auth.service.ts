@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   logOut() {
-    sessionStorage.removeItem("token");
+    return this.http.get('http://localhost:8010/api/auth/logout');
   }
 
   isAdmin() {

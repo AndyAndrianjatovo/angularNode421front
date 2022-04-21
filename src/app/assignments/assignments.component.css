@@ -27,7 +27,7 @@ a{
 .container {
   display:flex;
   flex-direction: column;
-  width: 60%;
+  width: 70%;
   padding: 1em;
 }
 .sideRight{
@@ -48,13 +48,15 @@ a{
   color: #fff;
 }
 .menu ul{
-  margin-top: 3em;
+  margin-top: 7.1em;
 display: flex;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 list-style: none;
-font-size: 13px;
+font-size: 12px;
 font-family: "Poppins";
+font-weight: bold;
+padding: 0 3em;
 }
 
 .menu ul li{
@@ -102,8 +104,10 @@ table {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 2em;
-margin: 1em;
+  /* padding: 0 2em; */
+  margin: 1em;
+  margin-top: 2em;
+  width: 90%;
 }
 
 .example-list {
@@ -262,18 +266,20 @@ gap: 1em;
   display: flex;
   justify-content: center;
   margin-top: 1em;
+  width: 85%;
+margin: 0 auto;
 }
 
 .container2{
-  width: 39%;
-  padding: 1em;
+  width: 30%;
+  /* padding: 1em; */
   padding-top: 3.5em;
 }
 
-.demo-inline-calendar-card {
+/* .demo-inline-calendar-card {
   width: 80%;
   margin: 0 auto;
-}
+} */
 
 button.datyMisyEvent{
   background-color: #138b83;

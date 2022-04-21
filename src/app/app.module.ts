@@ -39,7 +39,8 @@ import { NoterComponent } from './assignments/noter/noter.component';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatMenuModule} from '@angular/material/menu';
 const routes:Routes = [
   {
     path:"",
@@ -83,7 +84,8 @@ const routes:Routes = [
     EditAssignmentComponent,
     LoginComponent,
     RegisterComponent,
-    NoterComponent
+    NoterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -91,7 +93,7 @@ const routes:Routes = [
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
     RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
-    MatChipsModule,MatSidenavModule,MatStepperModule,ReactiveFormsModule
+    MatChipsModule,MatSidenavModule,MatStepperModule,ReactiveFormsModule,MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
