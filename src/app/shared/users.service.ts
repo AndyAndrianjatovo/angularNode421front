@@ -26,6 +26,24 @@ export class UsersService {
 
   getUser(id:number):Observable<any> {
     return this.http.get<Users>(`${this.url}/${id}`)
+    .pipe(
+      map(a => {
+        a.nom = a.nom ;
+        return a;
+      }),
+      tap(a => {
+        console.log("Dans le tap, pour debug, matiere recu = " + a.nom)
+      }),
+      catchError(this.handleError<any>('### catchError: getMatiere by id avec id=' + id))
+    );
+  }
+  private handleError<T>(operation: any, result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error); // pour afficher dans la console
+      console.log(operation + ' a échoué ' + error.message);
+
+      return of(result as T);
+    }
   }
 
 }

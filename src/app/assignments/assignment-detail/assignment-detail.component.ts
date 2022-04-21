@@ -32,7 +32,7 @@ export class AssignmentDetailComponent implements OnInit {
     // on va récupérer l'id dans l'URL,
     // le + permet de forcer en number (au lieu de string)
     const id = +this.route.snapshot.params['id'];
-    this.getAssignment(id);
+    this.getAssignmentAsync(id);
  
   }
 
@@ -56,7 +56,7 @@ export class AssignmentDetailComponent implements OnInit {
 
   getEleve(id: number) {
     this.usersService.getUser(id).subscribe((result) => {
-      this.eleve = result;
+      this.eleve = result!;
     });
   }
 
@@ -68,6 +68,25 @@ export class AssignmentDetailComponent implements OnInit {
       console.log(assignment);
       this.getMatiere(assignment!.idMatiere);
       this.getEleve(assignment!.idEleve);
+    });
+  
+  }
+  getAssignmentAsync(id: number) {
+    // on demande au service de gestion des assignment,
+    // l'assignment qui a cet id !
+    this.assignmentsService.getAssignment(id).subscribe((assignment) => {
+      this.assignmentTransmis = assignment!;
+      let p =  new Promise((resolve, reject) => {
+        resolve(this.assignmentTransmis);
+      }).then(
+        assignment => {
+          this.getMatiere((assignment as Assignment).idMatiere);
+          this.getEleve((assignment as Assignment).idEleve);
+          console.log(this.eleve);
+        }
+      ).catch(
+        error => console.error(error)
+      )
     });
   
   }

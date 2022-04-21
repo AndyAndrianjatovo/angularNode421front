@@ -3,7 +3,7 @@
   <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
   <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date:"dd/MM/yy"}}</mat-card-subtitle>
    <mat-card-subtitle> Matiere {{matiere.nom}}</mat-card-subtitle>
- <mat-card-subtitle> Eleve {{eleve.nom }}</mat-card-subtitle>
+ <mat-card-subtitle> Eleve {{eleve.nom}}</mat-card-subtitle>
    <!--<mat-card-subtitle> Prof {{prof.nom}}</mat-card-subtitle> -->
   <div id="bottom">
     <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">Rendu</mat-checkbox>

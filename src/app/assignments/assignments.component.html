@@ -87,6 +87,7 @@
             class="example-list"
             (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let item of nonRendu" cdkDrag>
+              <a href="/assignment/{{item.id}}">
               <mat-card class="example-card">
                 <mat-card-content>
                   <p>
@@ -111,6 +112,7 @@
                   </div>
                 </div>
               </mat-card>
+              </a>
             </div>
           </div>
         </div>
