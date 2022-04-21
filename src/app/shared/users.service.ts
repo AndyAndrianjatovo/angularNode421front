@@ -21,7 +21,11 @@ export class UsersService {
   }
 
   getUserByProfil(profil:number):Observable<any> {
-    return this.http.get<Users[]>(`${this.url}/${profil}`)
+    return this.http.get<Users[]>(`http://localhost:8010/api/users/${profil}`)
+  }
+
+  getUser(id:number):Observable<any> {
+    return this.http.get<Users>(`${this.url}/${id}`)
   }
 
 }
