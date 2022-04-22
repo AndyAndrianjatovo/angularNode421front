@@ -69,6 +69,16 @@
   <mat-drawer-content> -->
     <app-navbar></app-navbar>
     <div class="headerContain">
+      <div class="searchPart">
+        <input type="text" id="searchbar" placeholder="Rechercher un devoir" [(ngModel)]="search">
+        <button mat-flat-button id="searchbutton" color="primary" (click)="searchAssignments()">Rechercher</button>
+        <!-- <select name="" id="">
+          <option value=""></option>
+        </select>
+        <select name="" id="">
+          <option value=""></option>
+        </select> -->
+      </div>
       <a routerLink="/add" class="ajouterBtn">
         <button mat-flat-button>
           Ajouter un devoir

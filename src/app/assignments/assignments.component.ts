@@ -43,6 +43,8 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   token: any;
 
+  search: string = "";
+
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
     this.getAssignmentsByDate();
@@ -244,4 +246,17 @@ openDialog( devoir: Assignment , event: CdkDragDrop<Assignment[]>): void {
     });
   }
 
+  searchAssignments(){
+    console.log(this.search);
+    this.rendu = [];
+    this.nonRendu = [];
+    this.assignments.filter(e => {
+      if(e.nom.toUpperCase().includes(this.search.toUpperCase()) && e.rendu == true) {
+        this.rendu.push(e);
+      }
+      else if(e.nom.includes(this.search) && e.rendu == false) {
+        this.nonRendu.push(e);
+      }
+    });
+  }
 }
