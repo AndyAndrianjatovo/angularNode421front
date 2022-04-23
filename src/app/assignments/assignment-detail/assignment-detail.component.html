@@ -1,13 +1,106 @@
+<!-- <p *ngIf="assignmentTodisplay">{{ assignmentTodisplay.nom }}</p> -->
+
+<div *ngIf="assignmentTodisplay" class="detContainer">
+  <h2>Détails du devoir</h2>
+  <div class="groupInput">
+    <label for="assignment-note"
+      >Nom du devoir <span style="color: red">*</span></label
+    >
+    <input
+      [value]="assignmentTodisplay.nom"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupInput">
+    <label for="assignment-note"
+      >Date de rendu <span style="color: red">*</span></label
+    >
+    <input
+      type="text"
+      value="{{ assignmentTodisplay.dateDeRendu | date: 'longDate' }}"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupInput">
+    <label for="assignment-note"
+      >Matière <span style="color: red">*</span></label
+    >
+    <input
+      type="text"
+      [value]="matiereTodisplay.nom"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupInput">
+    <label for="assignment-note">Prof <span style="color: red">*</span></label>
+    <input
+      type="text"
+      [value]="profTodisplay.nom"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupInput">
+    <label for="assignment-note"
+      >Etudiant<span style="color: red">*</span></label
+    >
+    <input
+      type="text"
+      [value]="eleveTodisplay.nom"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupInput" *ngIf="assignmentTodisplay.rendu">
+    <label for="assignment-note">Note<span style="color: red">*</span></label>
+    <input
+      type="text"
+      [value]="assignmentTodisplay.note"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupInput" *ngIf="assignmentTodisplay.rendu">
+    <label for="assignment-note"
+      >Remarques<span style="color: red">*</span></label
+    >
+    <input
+      type="text"
+      [value]="assignmentTodisplay.remarques"
+      readonly
+      style="background-color: rgb(232, 232, 232)"
+    />
+  </div>
+  <div class="groupBouton">
+    <button mat-stroked-button class="modifB" (click)="onClickEdit()">
+      Modifier
+    </button>
+    <button mat-raised-button class="deleteB" (click)="onDelete()">
+      Supprimer
+    </button>
+  </div>
+</div>
+
 <mat-card *ngIf="assignmentTransmis">
-  <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
-  <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date:"dd/MM/yy"}}</mat-card-subtitle>
-   <mat-card-subtitle> Matiere {{matiere.nom}}</mat-card-subtitle>
- <mat-card-subtitle> Eleve {{eleve.nom}}</mat-card-subtitle>
-   <mat-card-subtitle> Prof {{prof.nom}}</mat-card-subtitle>
+  <mat-card-title>{{ assignmentTransmis.nom }}</mat-card-title>
+  <mat-card-subtitle>{{
+    assignmentTransmis.dateDeRendu | date: "dd/MM/yy"
+  }}</mat-card-subtitle>
+  <mat-card-subtitle> Matiere {{ matiere.nom }}</mat-card-subtitle>
+  <mat-card-subtitle> Eleve {{ eleve.nom }}</mat-card-subtitle>
+  <mat-card-subtitle> Prof {{ prof.nom }}</mat-card-subtitle>
   <div id="bottom">
-    <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">Rendu</mat-checkbox>
-    <button mat-stroked-button color="primary" (click)="onClickEdit()" >EDIT</button>
-    <!-- <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isLoggedIn()">EDIT</button> -->
-    <button mat-raised-button color="warn" (click)="onDelete()" >DELETE</button>
+    <mat-checkbox
+      *ngIf="!assignmentTransmis.rendu"
+      (click)="onAssignmentRendu()"
+      >Rendu</mat-checkbox
+    >
+    <button mat-stroked-button color="primary" (click)="onClickEdit()">
+      EDIT
+    </button>
+    <button mat-raised-button color="warn" (click)="onDelete()">DELETE</button>
   </div>
 </mat-card>

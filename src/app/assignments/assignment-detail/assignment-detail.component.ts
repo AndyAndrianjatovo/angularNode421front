@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Matiere } from 'src/app/matiere/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
@@ -9,17 +9,30 @@ import { Assignment } from '../assignment.model';
 import { Users } from '../users.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NoterComponent } from '../noter/noter.component';
+import { EditAssignmentComponent } from '../edit-assignment/edit-assignment.component';
 
 @Component({
   selector: 'app-assignment-detail',
   templateUrl: './assignment-detail.component.html',
   styleUrls: ['./assignment-detail.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AssignmentDetailComponent implements OnInit {
   assignmentTransmis!: Assignment;
   matiere!: Matiere;
   eleve!: Users;
   prof!: Users;
+
+  @Input()
+  assignmentTodisplay!: Assignment;
+  @Input()
+  matiereTodisplay!: Matiere;
+  @Input()
+  profTodisplay!: Users;
+  @Input()
+  eleveTodisplay!: Users;
+
+  @Output() eventClose = new EventEmitter<string>();
 
   constructor(
     private assignmentsService: AssignmentsService, 
@@ -34,8 +47,8 @@ export class AssignmentDetailComponent implements OnInit {
   ngOnInit(): void {
     // on va récupérer l'id dans l'URL,
     // le + permet de forcer en number (au lieu de string)
-    const id = +this.route.snapshot.params['id'];
-    this.getAssignmentAsync(id);
+    // const id = +this.route.snapshot.params['id'];
+    // this.getAssignmentAsync(id);
  
   }
 
@@ -114,19 +127,21 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onDelete() {
-    if (!this.assignmentTransmis) return;
+    if (!this.assignmentTodisplay) return;
 
     this.assignmentsService
-      .deleteAssignment(this.assignmentTransmis)
+      .deleteAssignment(this.assignmentTodisplay)
       .subscribe((reponse) => {
         console.log(reponse.message);
         // et on navigue vers la page d'accueil pour afficher la liste
+        this.eventClose.emit('close');
         this.router.navigate(['/home']);
       });
+
   }
 
   onClickEdit() {
-    this.router.navigate(['/assignment', this.assignmentTransmis?.id, 'edit'], {
+    this.router.navigate(['/assignment', this.assignmentTodisplay.id, 'edit'], {
       queryParams: {
         name: 'Michel Buffa',
         job: 'Professeur',
@@ -137,5 +152,9 @@ export class AssignmentDetailComponent implements OnInit {
 
   isLoggedIn() {
     return this.authService.loggedIn;
+  }
+
+  openEditDevoir(){
+    const dialogRef = this.dialog.open(EditAssignmentComponent,{maxWidth:'35vw'});
   }
 }

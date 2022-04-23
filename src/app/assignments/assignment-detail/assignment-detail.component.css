@@ -1,5 +1,62 @@
+*{
+  font-family: 'Poppins',sans-serif;
+}
 #bottom {
   display:flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.mat-drawer {
+  width: 400px !important;
+}
+.detContainer{
+  padding: 2.5em;
+}
+.groupInput{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+.groupInput label{
+  font-size: 14px;
+  color: #464646;
+  font-weight: 500;
+}
+
+.groupInput input, .groupInput textarea, .groupInput select{
+  padding: 0 1em;
+  border-radius: 6px;
+  border: 1px #c4c4c4 solid;
+}
+.groupInput input, .groupInput select{
+  height: 40px;
+  margin-top: 0.5em;
+}
+.groupInput textarea{
+  font-size: 14px;
+}
+.groupInput select{
+  background-color: transparent;
+}
+.groupBouton{
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  align-items: center;
+}
+
+.groupBouton button{
+  font-family: "Poppins",sans-serif;
+  font-size: 12px;
+  color: #fff;
+}
+
+.modifB{
+  background-color: #ffa900;
+}
+
+.deleteB{
+  background-color: #f80c35;
 }
