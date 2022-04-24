@@ -41,6 +41,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSliderModule} from '@angular/material/slider';
 const routes:Routes = [
   {
     path:"",
@@ -93,7 +94,7 @@ const routes:Routes = [
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
     RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
-    MatChipsModule,MatSidenavModule,MatStepperModule,ReactiveFormsModule,MatMenuModule
+    MatChipsModule,MatSidenavModule,MatStepperModule,ReactiveFormsModule,MatMenuModule,MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

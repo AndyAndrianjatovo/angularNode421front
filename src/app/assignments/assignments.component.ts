@@ -34,7 +34,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   
   // pagination
   page=1;
-  limit=10000;
+  limit=5;
   totalPages=0;
   pagingCounter=0;
   hasPrevPage=false;
@@ -189,7 +189,8 @@ drop(event: CdkDragDrop<Assignment[]>) {
 openDialog( devoir: Assignment , event: CdkDragDrop<Assignment[]>): void {
   const dialogRef = this.dialog.open(NoterComponent,
     {
-      data: { assign: devoir , evenement : event }
+      data: { assign: devoir , evenement : event },
+      minWidth: '25vw',
     });
 }
 
