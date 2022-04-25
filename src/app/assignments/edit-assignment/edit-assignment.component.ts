@@ -103,7 +103,7 @@ export class EditAssignmentComponent implements OnInit {
 
   onSaveAssignment() {
     if (!this.assignment) return;
-    if((!this.assignment.nom) || (! this.assignment.dateDeRendu)|| (! this.assignment.note)|| (! this.assignment.idMatiere) || (! this.assignment.idEleve) ) return;
+    // if((!this.assignment.nom) || (! this.assignment.dateDeRendu)|| (! this.assignment.note)|| (! this.assignment.idMatiere) || (! this.assignment.idEleve) ) return;
     
 
     // on récupère les valeurs dans le formulaire
