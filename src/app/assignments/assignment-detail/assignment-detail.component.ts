@@ -10,6 +10,8 @@ import { Users, UsersWithoutPassword } from '../users.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NoterComponent } from '../noter/noter.component';
 import { EditAssignmentComponent } from '../edit-assignment/edit-assignment.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-assignment-detail',
@@ -35,7 +37,7 @@ export class AssignmentDetailComponent implements OnInit {
 
   token:string = "";
   users: UsersWithoutPassword = new UsersWithoutPassword;
-  
+
   @Output() eventClose = new EventEmitter<string>();
 
   constructor(
@@ -46,6 +48,7 @@ export class AssignmentDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog
+    ,private _snackBar: MatSnackBar 
   ) {}
 
   ngOnInit(): void {
@@ -146,9 +149,18 @@ export class AssignmentDetailComponent implements OnInit {
         console.log(reponse.message);
         // et on navigue vers la page d'accueil pour afficher la liste
         this.eventClose.emit('close');
+        this. openSnackBar();
         this.router.navigate(['/home']);
       });
 
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Devoir supprimé', 'Fermer', {
+      duration:2000,
+      horizontalPosition: "end",
+      verticalPosition: "bottom",
+    });
   }
 
   onClickEdit() {
