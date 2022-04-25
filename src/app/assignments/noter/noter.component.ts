@@ -37,6 +37,7 @@ export class NoterComponent implements OnInit {
 
   openSnackBarNoter() {
     this._snackBar.open('Devoir rendu', 'Fermer', {
+      duration:2000,
       horizontalPosition: "end",
       verticalPosition: "bottom",
     });
@@ -44,7 +45,7 @@ export class NoterComponent implements OnInit {
 
   openSnackBarSupprimer() {
     this._snackBar.open('Le devoir n\'est plus rendu', 'Fermer', {
-      duration:3000,
+      duration:2000,
       horizontalPosition: "end",
       verticalPosition: "bottom",
     });
