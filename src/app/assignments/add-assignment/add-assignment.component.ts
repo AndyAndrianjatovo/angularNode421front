@@ -33,6 +33,7 @@ export class AddAssignmentComponent implements OnInit {
   eleve:Users[] =[];
   prof:Users[] =[];
   users:Users[] =[];
+  today: Date = new Date();
 
   constructor(private assignmentsService:AssignmentsService, private router:Router,private matiereService :MatiereService, private usersService :UsersService,private _formBuilder: FormBuilder,private _snackBar: MatSnackBar ) {}
 

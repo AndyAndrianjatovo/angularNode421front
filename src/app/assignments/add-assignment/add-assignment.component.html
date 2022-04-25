@@ -109,13 +109,13 @@
           <label for="assignment-note"
             >Date de rendu <span style="color: red">*</span></label
           >
-          <input type="date" formControlName="secondCtrl" required />
+          <input type="date" formControlName="secondCtrl" required min="{{today | date:'YYYY-MM-dd'}}"/>
         </div>
         <div style="display: flex; justify-content: flex-end">
           <button mat-button matStepperPrevious class="cancelBouton">
             Back
           </button>
-          <button mat-button matStepperNext class="saveBouton">Next</button>
+          <button mat-button matStepperNext class="saveBouton" >Next</button>
         </div>
       </form>
     </mat-step>
@@ -222,6 +222,7 @@
           [value]="secondFormGroup.value.secondCtrl"
           readonly
           style="background-color: rgb(232, 232, 232)"
+
         />
       </div>
       <div class="groupInput">

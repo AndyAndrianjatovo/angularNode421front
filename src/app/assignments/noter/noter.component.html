@@ -13,13 +13,13 @@
         </mat-form-field> -->
         <div class="groupInput">
           <label for="assignment-note">Note <span style="color: red;">*</span></label>
-          <input type="number" [(ngModel)]="note" name="assignment-note" id="assignment-note" required>
+          <input type="number" [(ngModel)]="note" min=0 max=20 name="assignment-note" id="assignment-note" required>
         </div>
         <div class="groupInput">
           <label for="assignment-remarques">Remarque</label>
           <textarea name="assignment-remarques" id="assignment-remarques" [(ngModel)]="remarques" cols="20" rows="5"></textarea>
         </div>
-        <button mat-raised-button class="saveBouton" >
+        <button mat-raised-button class="saveBouton" [disabled]="!note || note<0 || note>20" >
           Enregistrer
         </button>
         <!-- <button mat-button (click)="onNoClick()" class="cancelBouton">Annuler</button> -->
