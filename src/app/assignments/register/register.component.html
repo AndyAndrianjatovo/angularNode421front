@@ -2,8 +2,8 @@
   <div class="pic">
     <div class="glass">
       <div class="text">
-        <p class="haut">We are</p>
-        <p class="milieu">Invite only right now.</p>
+        <!-- <p class="haut">We are</p> -->
+        <p class="milieu">Application de gestion de devoir</p>
       </div>
     </div>
   </div>
@@ -64,14 +64,19 @@
 
       <div class="input">
         <label for="profil">Profil</label>
-        <input
+        <select name="profil" id="profil" [(ngModel)]="profil" class="inp-control">
+          <option value="10">Etudiant</option>
+          <option value="20">Professeur</option>
+          <option value="30">Administrateur</option>
+        </select>
+        <!-- <input
           type="text"
           name="profil"
           id="profil"
           class="inp-control"
           placeholder="Enter your e-mail"
           [(ngModel)]="profil"
-        />
+        /> -->
       </div>
 
       <div class="button">
@@ -90,6 +95,7 @@
           </svg>
         </button>
       </div>
+      <p> <small> Vous avez déjà un compte ? Se connecter <a href="/login">ici</a></small></p>
     </form> 
   </div>
 </div>
