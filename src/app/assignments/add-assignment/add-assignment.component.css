@@ -20,9 +20,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 1em;
+    padding: 0;
     height: 100%;
-    margin-top: 2em;
+}
+.mat-dialog-container{
+  padding: 0 !important;
+  border-radius: 15px !important;
 }
 .mat-stepper-vertical, .mat-stepper-horizontal{
   /* min-height: 400px; */
@@ -30,7 +33,7 @@
   box-shadow: 2px 1px 5px 0px rgba(255,255,255,0.3);
   -webkit-box-shadow: 2px 1px 5px 0px rgba(255, 255, 255, 0.3);
   -moz-box-shadow: 2px 1px 5px 0px rgba(255, 255, 255, 0.3);
-  max-width: 35%;
+  /* max-width: 35%; */
 }
 .mat-step-header .mat-step-icon-state-edit{
   background-color: #ffc107;
@@ -85,13 +88,7 @@ gap: 1em;
 .mat-drawer {
   width: 200px;
 }
-.headerContain{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 2em;
-margin: 1em;
-}
+
 
 .example-list {
   /* border: solid 1px #ccc; */

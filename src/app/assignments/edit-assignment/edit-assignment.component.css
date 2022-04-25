@@ -1,5 +1,69 @@
+.container{
+  width: 30%;
+    background: #fff;
+    padding: 2em;
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 2em;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,.07),0 10px 10px -5px rgba(0,0,0,.05);
+}
+
 .form {
   display:flex;
   flex-direction: column;
   margin:5px;
+}
+
+.groupInput{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+.groupInput label{
+  font-size: 14px;
+  color: #464646;
+  font-weight: 500;
+}
+
+.groupInput input, .groupInput textarea, .groupInput select{
+  padding: 0 1em;
+  border-radius: 6px;
+  border: 1px #c4c4c4 solid;
+}
+.groupInput input, .groupInput select{
+  height: 40px;
+  margin-top: 0.5em;
+}
+.groupInput textarea{
+  font-size: 14px;
+  font-family: 'Poppins',sans-serif;
+}
+.groupInput select{
+  background-color: transparent;
+}
+.saveBouton,.dropBouton{
+  background-color: #0085ff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+  margin-top: 2em;
+}
+.cancelBouton{
+  background-color: transparent;
+  border: none;
+  color: #0085ff;
+  cursor: pointer;
+  float: right;
+  margin-top: 2em;
+
+}
+.datePicker{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.datePicker input{
+  width: 100%;
 }

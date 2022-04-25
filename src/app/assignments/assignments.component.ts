@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NoterComponent } from './noter/noter.component';
 import { Users } from './users.model';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
 
 @Component({
   selector: 'app-assignments',
@@ -33,7 +34,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   
   // pagination
   page=1;
-  limit=10000;
+  limit=5;
   totalPages=0;
   pagingCounter=0;
   hasPrevPage=false;
@@ -44,6 +45,11 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   token: any;
 
   search: string = "";
+
+  assignmentClicker!: Assignment;
+  matiereClicker!: Matiere;
+  profClicker!: Users;
+  eleveClicker!: Users;
 
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     // Only highligh dates inside the month view.
@@ -183,7 +189,8 @@ drop(event: CdkDragDrop<Assignment[]>) {
 openDialog( devoir: Assignment , event: CdkDragDrop<Assignment[]>): void {
   const dialogRef = this.dialog.open(NoterComponent,
     {
-      data: { assign: devoir , evenement : event }
+      data: { assign: devoir , evenement : event },
+      minWidth: '25vw',
     });
 }
 
@@ -258,5 +265,20 @@ openDialog( devoir: Assignment , event: CdkDragDrop<Assignment[]>): void {
         this.nonRendu.push(e);
       }
     });
+  }
+  assignToDisplay(item:Assignment){
+    this.assignmentClicker = item;
+    this.matiereClicker = this.getMatierebyId(item.idMatiere)!;
+    this.eleveClicker = this.getElevebyId(item.idEleve)!;
+    this.profClicker =  this.getProfbyId(this.getMatierebyId(item.idMatiere)!.idProf)!;
+  }
+  openAddDevoir(){
+    const dialogRef = this.dialog.open(AddAssignmentComponent,{maxWidth:'35vw'});
+    dialogRef.afterClosed().subscribe(result => {
+      this.getAssignments(this.token);
+    });
+  }
+  supprItem(newItem: string) {
+    this.getAssignments(this.token);
   }
 }
