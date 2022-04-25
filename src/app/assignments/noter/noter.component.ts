@@ -35,8 +35,16 @@ export class NoterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  openSnackBar() {
-    this._snackBar.open('Cannonball!!', 'Splash', {
+  openSnackBarNoter() {
+    this._snackBar.open('Devoir rendu', 'Fermer', {
+      horizontalPosition: "end",
+      verticalPosition: "bottom",
+    });
+  }
+
+  openSnackBarSupprimer() {
+    this._snackBar.open('Le devoir n\'est plus rendu', 'Fermer', {
+      duration:3000,
       horizontalPosition: "end",
       verticalPosition: "bottom",
     });
@@ -64,7 +72,7 @@ export class NoterComponent implements OnInit {
           this.data.evenement.previousIndex,
           this.data.evenement.currentIndex,
         );
-        this.openSnackBar();
+        this.openSnackBarNoter();
       }
       
   }
@@ -90,7 +98,7 @@ export class NoterComponent implements OnInit {
         this.data.evenement.previousIndex,
         this.data.evenement.currentIndex,
       );
-      this.openSnackBar();
+      this.openSnackBarSupprimer();
   }
 
 }

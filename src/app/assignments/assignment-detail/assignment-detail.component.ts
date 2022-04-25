@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 import { MatiereService } from 'src/app/shared/matiere.service';
 import { UsersService } from 'src/app/shared/users.service';
 import { Assignment } from '../assignment.model';
-import { Users } from '../users.model';
+import { Users, UsersWithoutPassword } from '../users.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NoterComponent } from '../noter/noter.component';
 import { EditAssignmentComponent } from '../edit-assignment/edit-assignment.component';
@@ -32,6 +32,10 @@ export class AssignmentDetailComponent implements OnInit {
   @Input()
   eleveTodisplay!: Users;
 
+
+  token:string = "";
+  users: UsersWithoutPassword = new UsersWithoutPassword;
+  
   @Output() eventClose = new EventEmitter<string>();
 
   constructor(
@@ -45,10 +49,17 @@ export class AssignmentDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // on va récupérer l'id dans l'URL,
-    // le + permet de forcer en number (au lieu de string)
-    // const id = +this.route.snapshot.params['id'];
-    // this.getAssignmentAsync(id);
+    if(sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token')!;
+      console.log("token: " + this.token);
+      this.authService.getLoggedIn(this.token).subscribe(reponse => {
+        var userT = reponse as UsersWithoutPassword;
+        this.users = userT;
+        console.log("users: " + JSON.stringify(this.users));
+      }, error => {
+        console.log("erreur = " + error.error);
+      });
+    }
  
   }
 

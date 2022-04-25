@@ -74,7 +74,7 @@
       style="background-color: rgb(232, 232, 232)"
     />
   </div>
-  <div class="groupBouton">
+  <div class="groupBouton" *ngIf="users.profil > 10">
     <button mat-stroked-button class="modifB" (click)="onClickEdit()">
       Modifier
     </button>
@@ -84,7 +84,7 @@
   </div>
 </div>
 
-<mat-card *ngIf="assignmentTransmis">
+<!-- <mat-card *ngIf="assignmentTransmis">
   <mat-card-title>{{ assignmentTransmis.nom }}</mat-card-title>
   <mat-card-subtitle>{{
     assignmentTransmis.dateDeRendu | date: "dd/MM/yy"
@@ -103,4 +103,4 @@
     </button>
     <button mat-raised-button color="warn" (click)="onDelete()">DELETE</button>
   </div>
-</mat-card>
+</mat-card> -->

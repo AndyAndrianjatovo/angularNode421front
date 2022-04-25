@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Matiere } from 'src/app/matiere/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { AuthService } from 'src/app/shared/auth.service';
 import { MatiereService } from 'src/app/shared/matiere.service';
 import { UsersService } from 'src/app/shared/users.service';
 import { Assignment } from '../assignment.model';
-import { Users } from '../users.model';
+import { Users, UsersWithoutPassword } from '../users.model';
 
 @Component({
   selector: 'app-edit-assignment',
@@ -28,12 +29,28 @@ export class EditAssignmentComponent implements OnInit {
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router,
-    private matiereService :MatiereService, 
+    private matiereService :MatiereService,  
+     private authService:AuthService,
     private usersService :UsersService
   ) {}
 
   ngOnInit(): void {
     // ici un exemple de récupération des query params et du fragment
+
+    if(sessionStorage.getItem('token') != null){
+      var token = sessionStorage.getItem('token')!;
+      this.authService.getLoggedIn(token).subscribe(reponse => {
+        var userT = reponse as UsersWithoutPassword;
+        if(userT.profil <20){
+          this.router.navigate(['/home']);
+        }
+       
+      }, error => {
+        console.log("erreur = " + error.error);
+      });
+    }
+ 
+
     let queryParams = this.route.snapshot.queryParams;
     console.log("Query params :")
     console.log(queryParams);
