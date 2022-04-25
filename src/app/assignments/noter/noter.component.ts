@@ -4,6 +4,7 @@ import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, transferArrayItem} from '@angular/cdk/drag-drop';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-noter',
@@ -18,7 +19,7 @@ export class NoterComponent implements OnInit {
   remarques!: string;
 
   constructor(
-    public dialogRef: MatDialogRef<NoterComponent>,private assignmentsService: AssignmentsService, private router: Router,
+    public dialogRef: MatDialogRef<NoterComponent>,private assignmentsService: AssignmentsService, private router: Router,private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
 
@@ -32,6 +33,13 @@ export class NoterComponent implements OnInit {
 
   closeModals(): void {
     this.dialogRef.close();
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Cannonball!!', 'Splash', {
+      horizontalPosition: "end",
+      verticalPosition: "bottom",
+    });
   }
 
   onSaveAssignment() {
@@ -56,6 +64,7 @@ export class NoterComponent implements OnInit {
           this.data.evenement.previousIndex,
           this.data.evenement.currentIndex,
         );
+        this.openSnackBar();
       }
       
   }
@@ -81,6 +90,7 @@ export class NoterComponent implements OnInit {
         this.data.evenement.previousIndex,
         this.data.evenement.currentIndex,
       );
+      this.openSnackBar();
   }
 
 }

@@ -16,7 +16,8 @@ export class AuthService {
   }
 
   register(nom:string, password:string, photo:string, profil:Number) {
-    return this.http.post('http://localhost:8010/api/auth/register', {nom, password, photo, profil});
+    var id = Math.round(Math.random()*10000000);
+    return this.http.post('http://localhost:8010/api/auth/register', {nom, password, photo, profil,id});
   }
 
   getLoggedIn(token:string) {
