@@ -90,7 +90,7 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   SaveAssign() {
-    if((!this.firstFormGroup.value.firstCtrl) || (!this.secondFormGroup.value.secondCtrl)) return;
+    if((!this.firstFormGroup.value.firstCtrl) || (!this.secondFormGroup.value.secondCtrl)|| (!this.thirdFormGroup.value.thirdCtrl)|| (!this.fourthFormGroup.value.fourthCtrl)) return;
     console.log(
       'nom = ' + this.firstFormGroup.value.firstCtrl + ' date de rendu = ' + this.secondFormGroup.value.secondCtrl + ' matiere = ' + this.thirdFormGroup.value.thirdCtrl + ' eleve = ' + this.fourthFormGroup.value.fourthCtrl
     );

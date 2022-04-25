@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -93,7 +94,7 @@ const routes:Routes = [
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, MatSelectModule,DragDropModule,MatDialogModule,
-    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
+    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,MatSnackBarModule,
     MatChipsModule,MatSidenavModule,MatStepperModule,ReactiveFormsModule,MatMenuModule,MatSliderModule
   ],
   providers: [],
