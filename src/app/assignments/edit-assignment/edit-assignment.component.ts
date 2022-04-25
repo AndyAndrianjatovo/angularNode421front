@@ -7,6 +7,7 @@ import { MatiereService } from 'src/app/shared/matiere.service';
 import { UsersService } from 'src/app/shared/users.service';
 import { Assignment } from '../assignment.model';
 import { Users, UsersWithoutPassword } from '../users.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-assignment',
@@ -31,7 +32,7 @@ export class EditAssignmentComponent implements OnInit {
     private router: Router,
     private matiereService :MatiereService,  
      private authService:AuthService,
-    private usersService :UsersService
+    private usersService :UsersService,private _snackBar: MatSnackBar 
   ) {}
 
   ngOnInit(): void {
@@ -92,8 +93,18 @@ export class EditAssignmentComponent implements OnInit {
     });
   }
 
+  openSnackBar() {
+    this._snackBar.open('Devoir modifié', 'Fermer', {
+      duration:2000,
+      horizontalPosition: "end",
+      verticalPosition: "bottom",
+    });
+  }
+
   onSaveAssignment() {
     if (!this.assignment) return;
+    if((!this.assignment.nom) || (! this.assignment.dateDeRendu)|| (! this.assignment.note)|| (! this.assignment.idMatiere) || (! this.assignment.idEleve) ) return;
+    
 
     // on récupère les valeurs dans le formulaire
     this.assignment.nom = this.nomAssignment;
@@ -109,6 +120,7 @@ export class EditAssignmentComponent implements OnInit {
         console.log(reponse.message);
 
         // navigation vers la home page
+        this. openSnackBar();
         this.router.navigate(['/home']);
       });
   }

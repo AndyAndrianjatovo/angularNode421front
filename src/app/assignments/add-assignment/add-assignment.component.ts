@@ -7,6 +7,7 @@ import { Matiere } from '../../matiere/matiere.model';
 import { Users } from '../users.model';
 import { UsersService } from 'src/app/shared/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-assignment',
@@ -33,7 +34,7 @@ export class AddAssignmentComponent implements OnInit {
   prof:Users[] =[];
   users:Users[] =[];
 
-  constructor(private assignmentsService:AssignmentsService, private router:Router,private matiereService :MatiereService, private usersService :UsersService,private _formBuilder: FormBuilder ) {}
+  constructor(private assignmentsService:AssignmentsService, private router:Router,private matiereService :MatiereService, private usersService :UsersService,private _formBuilder: FormBuilder,private _snackBar: MatSnackBar ) {}
 
   ngOnInit(): void {
     this.getMatiere();
@@ -89,6 +90,14 @@ export class AddAssignmentComponent implements OnInit {
     })
   }
 
+  openSnackBar() {
+    this._snackBar.open('Devoir ajouté', 'Fermer', {
+      duration:2000,
+      horizontalPosition: "end",
+      verticalPosition: "bottom",
+    });
+  }
+
   SaveAssign() {
     if((!this.firstFormGroup.value.firstCtrl) || (!this.secondFormGroup.value.secondCtrl)|| (!this.thirdFormGroup.value.thirdCtrl)|| (!this.fourthFormGroup.value.fourthCtrl)) return;
     console.log(
@@ -112,6 +121,7 @@ export class AddAssignmentComponent implements OnInit {
       // en gros, demander de naviguer vers /home
       this.router.navigate(["/home"]);
     })
+    this.openSnackBar();
   }
 
   getUsers() {
