@@ -1,28 +1,49 @@
 # AssignmentApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+C'est la suite du partie Front-end du TP sur les Assignments vue dans le cours.
 
-## Development server
+## Lancement du projet
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Pour lancer le projet :
+- Cloner ce repository,
+- Lancer le [Back-end](https://github.com/TokyRandrian/nodeAngular421api)
+- Aller dans le projet puis faire `npm install`
+- Lancer `ng serve` pour lancer le client. Ouvrir ensuite l'URL affiché.
 
-## Code scaffolding
+## Nos contributions sur le projet
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pour faire le projet on a utilisé des composants issus de [Angular material](https://material.angular.io). Pour le design on s'est inspiré des designs sur [dribbble](https://dribbble.com) mais aucun template n'a été utilisé.
 
-## Build
+### Hébergement et connexion
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Le site est hébergé sur [heroku](https://angularnode421front.herokuapp.com) et on a créé un login de connexion prêt à l'emploi:
+  - Nom : Michel Buffa
+  - Mot de passe : 0000
 
-## Running unit tests
+### Login et inscription
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- On a utilisé JWT pour gérer la connexion, on a suivi le [tuto](https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/) qui a été donné dans le cours pour le faire.
+- On a aussi implementé une page d'inscription où on peut choisir le type de profil, mettre le nom, le mot de passe et importer une photo qui sera transformer en base64 et enregistrer dans la base de données MongoDB.
 
-## Running end-to-end tests
+### Les fonctionnalités présent dans le projet
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#### Gestion des devoirs
 
-## Further help
+- Arrivé sur la page home on a listé les devoirs avec un système de ***drag and drop*** sur 2 colonnes appuyés par une ***pagination***. L'un des colonnes étant la liste des devoirs non rendus et l'autre des devoirs rendus.
+- Un devoir est représenté par un card où on trouve ***le nom du devoir, le nom de la matière, l'image associé à la matière, le nom de l'élève, la date de rendu et la photo du professeur***.
+- Pour rendre un devoir il suffit de déplacer le devoir dans la colonne des devoirs rendu et ***un pop-up apparaitra pour mettre une note et des remarques***.
+- Il y a une possibilité d'annuler le rendu d'un devoir en le déplacant dans la colonne des devoirs non rendus un pop-up de confirmation apparaitra pour confirmation. 
+- On a utilisé un ***stepper*** pour le formulaire d'ajout d'un devoir. 
+- Pour voir les détails d'un devoir on n'a qu'à clicker dessus.
+- Dans les détails si l'utilisateur connecter est un Admin ou un Professeur les boutons pour la modification et la suppression seront disponibles.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# MBDS_Madagscar2021-2022Front
+#### Fonctionnalités en plus
+
+- On a ajouter un calendrier où l'on peut voir en dessous les devoirs qui ont des dates de rendus égales à la date séléctionné, ils sont clickable si on veut voir les détails.
+- On a ajouter une fonction de ***recherche simple*** par le nom des devoirs.
+- Pour chaque action effectuer (ajout, modification, suppression) un ***snackbar*** de notification apparait.
+- On a ajouter une barre de navigation qui affiche la photo de l'utilisateur connecter, de son nom, de son profil et on peut clicker dessur pour ***se déconnecter***.
+
+## Nous
+- ANDRIANJATOVONIAINA Andy Tsiory n°04 ([@AndyAndrianjatovo](https://github.com/AndyAndrianjatovo))
+- RANDRIANIMANANA Tokiniaina Maminiriana Fahendrena n°21 ([@TokyRandrian](https://github.com/TokyRandrian))
