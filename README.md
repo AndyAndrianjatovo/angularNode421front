@@ -24,6 +24,7 @@ Pour faire le projet on a utilisé des composants issus de [Angular material](ht
 
 - On a utilisé JWT pour gérer la connexion, on a suivi le [tuto](https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/) qui a été donné dans le cours pour le faire.
 - On a aussi implementé une page d'inscription où on peut choisir le type de profil, mettre le nom, le mot de passe et importer une photo qui sera transformer en base64 et enregistrer dans la base de données MongoDB.
+- Ajout des verifications de Token pour certains routes 
 
 ### Les fonctionnalités présent dans le projet
 
