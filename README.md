@@ -6,7 +6,7 @@ C'est la suite du partie Front-end du TP sur les Assignments vue dans le cours.
 
 Pour lancer le projet :
 - Cloner ce repository,
-- Lancer le [Back-end](https://github.com/TokyRandrian/nodeAngular421api)
+- Lancer le [Back-end](https://github.com/TokyRandrian/nodeAngular421api) dans le cas où on a le back-end localement
 - Aller dans le projet puis faire `npm install`
 - Lancer `ng serve` pour lancer le client. Ouvrir ensuite l'URL affiché.
 
